@@ -1,0 +1,1502 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LightingReno - Renowacja Oświetlenia w Biurach</title>
+    <style>
+    /* IMPORT CZCIONEK Z GOOGLE FONTS */
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap');
+
+    :root {
+        /* PALETA KOLORÓW W STYLU WIX "CLEAN & CLASSY" */
+        --color-primary: #1F1F1F;     /* Głęboka czerń/grafit */
+        --color-secondary: #FFFFFF;   /* Czysta biel */
+        --color-accent: #C6A87C;      /* Eleganckie złoto (szampańskie) */
+        --color-accent-hover: #B09265;
+        --color-bg: #FFFFFF;
+        --color-surface: #F9F9F9;     /* Bardzo jasny szary dla sekcji tła */
+        --color-text: #3F3F3F;        /* Ciemnoszary dla tekstu */
+        --color-text-light: #757575;  /* Szary dla opisów */
+        --color-border: #E0E0E0;
+        --color-error: #D32F2F;
+        
+        --shadow-card: 0 10px 40px rgba(0, 0, 0, 0.06);
+        --shadow-hover: 0 15px 50px rgba(0, 0, 0, 0.1);
+        --radius-std: 0px;            /* Wix często używa ostrych krawędzi lub małych zaokrągleń */
+        --radius-btn: 0px;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+        font-size: 16px;
+    }
+
+    body {
+        font-family: 'Open Sans', sans-serif; /* Tekst główny */
+        line-height: 1.7;
+        color: var(--color-text);
+        background-color: var(--color-bg);
+        -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Montserrat', sans-serif; /* Nagłówki */
+        font-weight: 700;
+        color: var(--color-primary);
+        line-height: 1.2;
+        text-transform: uppercase; /* Stylowe, wielkie litery */
+        letter-spacing: 1px;
+    }
+
+    /* ============= HEADER ============= */
+    header {
+        background-color: rgba(255, 255, 255, 0.98);
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        padding: 0;
+    }
+
+    .header-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1.2rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--color-primary);
+        text-decoration: none;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        border: 2px solid var(--color-primary);
+        padding: 0.5rem 1rem;
+        transition: all 0.3s;
+    }
+
+    .logo:hover {
+        background: var(--color-primary);
+        color: white;
+    }
+
+    nav a {
+        margin-left: 2.5rem;
+        color: var(--color-primary);
+        text-decoration: none;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: color 0.3s;
+        position: relative;
+    }
+
+    nav a::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -5px;
+        left: 0;
+        background-color: var(--color-accent);
+        transition: width 0.3s;
+    }
+
+    nav a:hover {
+        color: var(--color-accent);
+    }
+
+    nav a:hover::after {
+        width: 100%;
+    }
+
+    /* ============= HERO SECTION ============= */
+    .hero {
+        background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/Office1.jpeg') no-repeat center center/cover;
+        /* Jeśli nie masz zdjęcia, użyj ciemnego tła zastępczego */
+        background-color: #222; 
+        color: white;
+        padding: 180px 2rem 120px; /* Większy padding góra/dół */
+        text-align: center;
+        position: relative;
+        min-height: 80vh; /* Prawie pełny ekran */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .hero-content {
+        max-width: 900px;
+        margin: 0 auto;
+        z-index: 2;
+    }
+
+    .hero h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1.5rem;
+        color: #ffffff;
+        letter-spacing: 3px;
+        font-weight: 800;
+    }
+
+    .hero p {
+        font-size: 1.2rem;
+        margin-bottom: 3rem;
+        font-weight: 400;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        opacity: 0.9;
+    }
+
+    /* Quick Calc w Hero - styl minimalistyczny */
+    .hero-quick-calc {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        padding: 2.5rem;
+        border: 1px solid rgba(255,255,255,0.2);
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    .hero-quick-calc label {
+        color: white;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+        margin-bottom: 1rem;
+    }
+
+    .hero-quick-calc input {
+        background: transparent;
+        border: none;
+        border-bottom: 2px solid white;
+        color: white;
+        text-align: center;
+        font-size: 2rem;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        padding: 0.5rem;
+        width: 100%;
+        border-radius: 0;
+    }
+
+    .hero-quick-calc input::placeholder {
+        color: rgba(255,255,255,0.5);
+    }
+
+    .hero-quick-calc input:focus {
+        outline: none;
+        border-bottom-color: var(--color-accent);
+    }
+
+    .hero-quick-calc small {
+        color: rgba(255,255,255,0.7);
+        font-size: 0.8rem;
+    }
+
+    /* ============= BUTTONS ============= */
+    .cta-buttons-group {
+        display: flex;
+        gap: 1.5rem;
+        margin-top: 2rem;
+        justify-content: center;
+    }
+
+    .cta-section-btn, button, .savings-cta, .cta-button {
+        padding: 1rem 2.5rem;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        border-radius: var(--radius-btn);
+        cursor: pointer;
+        transition: all 0.4s ease;
+        text-decoration: none;
+        display: inline-block;
+        border: 2px solid transparent;
+    }
+
+    /* Primary Button Style */
+    .cta-section-btn:not(.secondary), button, .savings-cta, .cta-button {
+        background-color: var(--color-accent);
+        color: white;
+    }
+
+    .cta-section-btn:not(.secondary):hover, button:hover, .savings-cta:hover, .cta-button:hover {
+        background-color: var(--color-accent-hover);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(198, 168, 124, 0.4);
+    }
+
+    /* Secondary Button Style */
+    .cta-section-btn.secondary {
+        background-color: transparent;
+        border: 2px solid white;
+        color: white;
+    }
+
+    .quick-savings-section .cta-section-btn.secondary,
+    .results .cta-section-btn.secondary {
+        border-color: var(--color-primary);
+        color: var(--color-primary);
+    }
+
+    .cta-section-btn.secondary:hover {
+        background-color: white;
+        color: var(--color-primary);
+    }
+
+    .quick-savings-section .cta-section-btn.secondary:hover,
+    .results .cta-section-btn.secondary:hover {
+        background-color: var(--color-primary);
+        color: white;
+    }
+
+    /* ============= SECTIONS GENERAL ============= */
+    .quick-savings-section, .calculator-section, .info-section, .portfolio-section, .testimonials-section, .faq-section {
+        padding: 100px 2rem;
+    }
+
+    .section-title {
+        text-align: center;
+        font-size: 2.2rem;
+        margin-bottom: 4rem;
+        color: var(--color-primary);
+        position: relative;
+        padding-bottom: 1.5rem;
+    }
+
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 3px;
+        background-color: var(--color-accent);
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    /* ============= QUICK SAVINGS & CARDS ============= */
+    .quick-savings-section {
+        padding: 60px 2rem; /* Mniej miejsca w pionie */
+    }
+
+    .savings-card {
+        background: white;
+        padding: 3rem; /* Mniej paddingu w pionie */
+        box-shadow: var(--shadow-card);
+        text-align: center;
+        max-width: 1200px; /* Bardziej rozciągnięta w poziomie */
+        margin: 0 auto;
+        border-top: 5px solid var(--color-accent);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .savings-value {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 5rem;
+        font-weight: 700;
+        color: var(--color-primary);
+        line-height: 1;
+        margin: 1rem 0 0.5rem;
+    }
+
+    .savings-sublabel {
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--color-accent);
+        font-weight: 700;
+    }
+
+    .savings-details {
+        background: var(--color-surface);
+        padding: 1.5rem; /* Mniej paddingu */
+        margin: 2rem 0;
+        border: 1px solid var(--color-border);
+        width: 100%; /* Rozciągnięcie w poziomie */
+        max-width: 800px;
+    }
+
+    .detail-item {
+        border-bottom: 1px solid #e0e0e0;
+        padding: 1rem 0; /* Mniej paddingu */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .detail-label {
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+        color: var(--color-text-light);
+    }
+
+    .detail-value {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        font-size: 1.2rem;
+        color: var(--color-primary);
+    }
+
+    /* ============= CALCULATOR FORM ============= */
+    .calculator-section {
+        background-color: var(--color-surface);
+    }
+
+    .calculator-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        max-width: 1000px;
+        margin: 0 auto;
+        align-items: start;
+    }
+
+    .form-group label {
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 700;
+        color: var(--color-primary);
+        margin-bottom: 0.8rem;
+    }
+
+    input[type="number"],
+    input[type="text"] {
+        width: 100%;
+        padding: 1rem;
+        border: 1px solid #ddd;
+        background: white;
+        font-size: 1rem;
+        color: var(--color-primary);
+        transition: border-color 0.3s;
+        border-radius: var(--radius-std);
+    }
+
+    input[type="number"]:focus,
+    input[type="text"]:focus {
+        border-color: var(--color-accent);
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(198, 168, 124, 0.1);
+    }
+
+    .input-hint {
+        font-style: italic;
+        margin-top: 0.5rem;
+        font-size: 0.8rem;
+        color: #888;
+    }
+
+    /* ============= RESULTS SECTION ============= */
+    .results {
+        background: var(--color-primary); /* Dark background for results */
+        color: white;
+        padding: 3rem;
+        box-shadow: var(--shadow-card);
+        position: relative;
+    }
+
+    .results h3 {
+        color: white;
+        margin-bottom: 2rem;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        padding-bottom: 1rem;
+    }
+
+    .result-row {
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        padding: 1rem 0;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .result-label {
+        color: rgba(255,255,255,0.7);
+        font-weight: 400;
+    }
+
+    .result-value {
+        color: white;
+    }
+
+    .result-row.highlight {
+        background-color: var(--color-accent);
+        margin: 2rem -3rem;
+        padding: 1.5rem 3rem;
+        border-radius: 0;
+    }
+
+    .result-row.highlight .result-label {
+        color: rgba(0,0,0,0.7);
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+    .result-row.highlight .result-value {
+        color: black;
+        font-size: 1.5rem;
+    }
+
+    .roi-box {
+        background: transparent;
+        border: 2px solid var(--color-accent);
+        color: var(--color-accent);
+        padding: 1.5rem;
+        margin-top: 2rem;
+        text-align: center;
+    }
+    
+    .roi-box .roi-label {
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 0.7rem;
+    }
+
+    /* ============= PORTFOLIO ============= */
+    .portfolio-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .portfolio-item {
+        background: white;
+        border-radius: 0;
+        box-shadow: none;
+        transition: transform 0.4s;
+        cursor: pointer;
+    }
+
+    .portfolio-item:hover {
+        transform: translateY(-10px);
+    }
+    
+    .portfolio-image {
+        height: 300px;
+        background-color: #ddd;
+        position: relative;
+    }
+    
+    /* Overlay effect on hover for portfolio */
+    .portfolio-image::after {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(198, 168, 124, 0.8);
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+    
+    .portfolio-item:hover .portfolio-image::after {
+        opacity: 1;
+    }
+
+    .portfolio-content {
+        padding: 2rem 1rem;
+        text-align: center;
+    }
+
+    .portfolio-content h4 {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    /* ============= TESTIMONIALS ============= */
+    .testimonials-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .testimonial {
+        background: white;
+        padding: 2rem;
+        box-shadow: var(--shadow-card);
+        text-align: center;
+        border-top: 5px solid var(--color-accent);
+    }
+
+    .testimonial-text {
+        font-style: italic;
+        margin-bottom: 1rem;
+        color: var(--color-text-light);
+    }
+
+    .testimonial-author {
+        font-weight: 700;
+        color: var(--color-primary);
+    }
+
+    .testimonial-company {
+        font-size: 0.9rem;
+        color: var(--color-text-light);
+    }
+
+    /* ============= FAQ ============= */
+    .faq-section {
+        background-color: var(--color-surface);
+    }
+
+    .faq-container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .faq-item {
+        margin-bottom: 1rem;
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    .faq-item summary {
+        cursor: pointer;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+        padding: 1rem 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: var(--color-primary);
+    }
+
+    .faq-item summary::after {
+        content: '+';
+        font-size: 1.5rem;
+        color: var(--color-accent);
+    }
+
+    .faq-item[open] summary::after {
+        content: '-';
+    }
+
+    .faq-item p {
+        padding: 0 0 1rem 0;
+        color: var(--color-text-light);
+    }
+
+    /* ============= CONTACT & FOOTER ============= */
+    .contact-section {
+        background-color: #1a1a1a;
+        color: white;
+        position: relative;
+        padding: 100px 2rem;
+        text-align: center;
+    }
+
+    .contact-section h2 {
+        color: white;
+        margin-bottom: 1rem;
+    }
+
+    .contact-section p {
+        color: rgba(255,255,255,0.8);
+        margin-bottom: 3rem;
+    }
+    
+    .contact-info {
+        display: flex;
+        justify-content: center;
+        gap: 4rem; /* Większy gap dla lepszego rozłożenia */
+        margin-bottom: 3rem;
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .contact-item {
+        background: transparent;
+        border: 1px solid rgba(255,255,255,0.1);
+        padding: 2.5rem; /* Większy padding dla lepszego wyglądu */
+        min-width: 280px; /* Szersze elementy */
+        text-align: center;
+    }
+    
+    .contact-item h4 {
+        color: var(--color-accent);
+        margin-bottom: 1rem;
+    }
+
+    .contact-item p {
+        color: white;
+        margin: 0;
+    }
+
+    .cta-button {
+        margin: 0 auto; /* Centrowanie przycisku */
+    }
+
+    footer {
+        background-color: black;
+        color: #666;
+        padding: 2rem;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        border-top: 1px solid #222;
+        text-align: center;
+    }
+
+    /* ============= RESPONSIVE ============= */
+    @media (max-width: 768px) {
+        .hero h1 { font-size: 2rem; }
+        .hero { padding: 120px 1rem 80px; }
+        .calculator-wrapper { grid-template-columns: 1fr; gap: 2rem; }
+        .savings-value { font-size: 3.5rem; }
+        .header-container { flex-direction: column; gap: 1rem; }
+        nav a { margin: 0 0.8rem; margin-left: 0; font-size: 0.75rem; }
+        .contact-info { flex-direction: column; gap: 2rem; }
+        .contact-item { min-width: auto; width: 100%; max-width: 400px; margin: 0 auto; }
+    }
+    
+    /* Utility */
+    .hidden { display: none; }
+    .error-message { color: var(--color-error); margin-top: 1rem; }
+    
+    /* CHAT WIDGET - Ulepszony styl dla lepszego UX */
+    .chat-widget {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 9999;
+    }
+
+    .chat-bubble-btn {
+        background: var(--color-primary);
+        color: white;
+        border: 2px solid var(--color-accent);
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        font-size: 1.5rem;
+        cursor: pointer;
+        box-shadow: var(--shadow-card);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        transition: all 0.3s;
+    }
+
+    .chat-bubble-btn:hover {
+        transform: scale(1.1);
+        box-shadow: var(--shadow-hover);
+    }
+
+    .chat-bubble-btn::before {
+        content: 'Masz dodatkowe pytania? Skontaktuj się z nami';
+        position: absolute;
+        bottom: 70px;
+        right: -20px;
+        background: var(--color-primary);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        font-size: 0.8rem;
+        white-space: nowrap;
+        opacity: 0;
+        transition: opacity 0.3s;
+        pointer-events: none;
+    }
+
+    .chat-bubble-btn:hover::before {
+        opacity: 1;
+    }
+
+    .chat-container {
+        display: none;
+        width: 350px; /* Szersze okno dla lepszych proporcji */
+        background: white;
+        border: 1px solid var(--color-border);
+        box-shadow: var(--shadow-hover);
+        border-radius: 10px; /* Lekko zaokrąglone krawędzie */
+        position: absolute;
+        bottom: 80px;
+        right: 0;
+        overflow: hidden;
+    }
+
+    .chat-container.active {
+        display: block;
+    }
+
+    .chat-header {
+        background: var(--color-primary);
+        color: white;
+        padding: 1.2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 1rem;
+    }
+
+    .chat-close-btn {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    .chat-messages {
+        height: 300px; /* Wyższe okno wiadomości */
+        overflow-y: auto;
+        padding: 1.5rem;
+        background: #f8f8f8; /* Lekko szare tło dla kontrastu */
+    }
+
+    .chat-message {
+        margin-bottom: 1.2rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .chat-message .message-content {
+        padding: 0.8rem 1.2rem;
+        border-radius: 20px;
+        max-width: 80%;
+        font-size: 0.95rem;
+        line-height: 1.4;
+    }
+
+    .chat-message.bot {
+        align-items: flex-start;
+    }
+
+    .chat-message.bot .message-content {
+        background: #e8e8e8;
+        color: var(--color-text);
+    }
+
+    .chat-message.user {
+        align-items: flex-end;
+    }
+
+    .chat-message.user .message-content {
+        background: var(--color-primary);
+        color: white;
+    }
+
+    .chat-input-area {
+        padding: 1rem;
+        display: flex;
+        background: white;
+        border-top: 1px solid var(--color-border);
+    }
+
+    .chat-input {
+        flex: 1;
+        padding: 0.8rem;
+        border: 1px solid var(--color-border);
+        border-radius: 20px;
+        margin-right: 0.5rem;
+        font-size: 0.95rem;
+    }
+
+    .chat-input:focus {
+        outline: none;
+        border-color: var(--color-accent);
+    }
+
+    .chat-send-btn {
+        background: var(--color-accent);
+        color: white;
+        border: none;
+        padding: 0.8rem 1.5rem;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        transition: background 0.3s;
+    }
+
+    .chat-send-btn:hover {
+        background: var(--color-accent-hover);
+    }
+
+    .chat-error {
+        color: var(--color-error);
+        font-size: 0.8rem;
+        margin-top: 0.5rem;
+        text-align: center;
+    }
+</style>
+
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">💡 LightingReno</a>
+            <nav>
+                <a href="#kalkulator">Kalkulator</a>
+                <a href="#portfolio">Portfolio</a>
+                <a href="#kontakt">Kontakt</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Renowacja Oświetlenia w Biurach</h1>
+                <p>Zmniejsz koszty energii, zwiększ efektywność i komfort pracy</p>
+                
+                <div class="hero-quick-calc">
+                    <label for="heroNumberOfFixtures">Liczba opraw do wymiany:</label>
+                    <input 
+                        type="number" 
+                        id="heroNumberOfFixtures" 
+                        placeholder="np. 60" 
+                        min="1" 
+                        value="60"
+                    >
+                    <small style="display: block; margin-top: 0.5rem;">Wprowadź liczbę opraw, aby zobaczyć oszczędności</small>
+                    <div class="cta-buttons-group" style="margin-top: 1rem;">
+                        <a href="#quick-savings" class="cta-section-btn">Zobacz Oszczędności</a>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- QUICK SAVINGS PREVIEW SECTION -->
+    <section class="quick-savings-section" id="quick-savings">
+        <div class="container">
+            <div class="savings-card">
+                <h2>Twoje Oszczędności Roczne</h2>
+                <div class="savings-display">
+                    <div class="savings-value" id="quickSavingsValue">0 PLN</div>
+                    <div class="savings-sublabel" id="quickSavingsSubtext">Wpisz liczbę opraw wyżej</div>
+                </div>
+                <div class="savings-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Zużycie energii:</span>
+                        <span class="detail-value" id="quickConsumptionOld">0 kWh</span>
+                        <span class="detail-arrow">→</span>
+                        <span class="detail-value" id="quickConsumptionNew">0 kWh</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">ROI:</span>
+                        <span class="detail-value detail-roi" id="quickROI">-</span>
+                    </div>
+                </div>
+                <a href="#kalkulator" class="savings-cta">Szczegółowy Kalkulator →</a>
+                <div class="cta-buttons-group">
+                    <a href="#dla-wlasciciela" class="cta-section-btn">👤 Dla Właściciela</a>
+                    <a href="#dla-najemcy" class="cta-section-btn secondary">👥 Dla Najemcy</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CALCULATOR SECTION -->
+    <section class="calculator-section" id="kalkulator">
+        <div class="container">
+            <h2 class="section-title">Kalkulator Oszczędności</h2>
+            
+            <div class="calculator-wrapper">
+                <!-- FORM -->
+                <div>
+                    <form id="calculatorForm">
+                        <div class="form-group">
+                            <label for="numberOfFixtures">Liczba opraw do wymiany</label>
+                            <input 
+                                type="number" 
+                                id="numberOfFixtures" 
+                                placeholder="np. 60" 
+                                min="1" 
+                                value="60"
+                                required
+                            >
+                            <div class="input-hint">Całkowita ilość lamp/opraw do wymiany</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="wattageOld">Moc obecnego oświetlenia (W)</label>
+                            <input 
+                                type="number" 
+                                id="wattageOld" 
+                                placeholder="np. 72" 
+                                min="1" 
+                                step="0.1"
+                                value="72"
+                                required
+                            >
+                            <div class="input-hint">Wattaż jednej oprawy (np. 4×18W = 72W)</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="hoursPerDay">Godziny pracy dziennie</label>
+                            <input 
+                                type="number" 
+                                id="hoursPerDay" 
+                                placeholder="np. 12" 
+                                min="1" 
+                                max="24"
+                                value="12"
+                                required
+                            >
+                            <div class="input-hint">Średnia liczba godzin pracy biura dziennie (×365 dni)</div>
+                        </div>
+
+                        <button type="submit">Oblicz Oszczędności</button>
+                    </form>
+
+                    <div id="errorMessage" class="error-message hidden"></div>
+                </div>
+
+                <!-- RESULTS -->
+                <div id="resultsContainer" class="hidden">
+                    <div class="results">
+                        <h3>Wyniki Kalkulacji</h3>
+
+                        <div class="result-row">
+                            <span class="result-label">Liczba opraw:</span>
+                            <span class="result-value" id="resultFixtures">-</span>
+                        </div>
+
+                        <div class="result-row">
+                            <span class="result-label">Godziny pracy/rok:</span>
+                            <span class="result-value" id="resultHoursPerYear">-</span>
+                        </div>
+
+                        <hr style="margin: 1.5rem 0; border: none; border-top: 1px solid var(--color-border);">
+
+                        <div class="result-row">
+                            <span class="result-label"><strong>Obecne oświetlenie (roczne):</strong></span>
+                        </div>
+                        <div class="result-row">
+                            <span class="result-label">Zużycie energii:</span>
+                            <span class="result-value" id="resultOldConsumption">-</span>
+                        </div>
+                        <div class="result-row">
+                            <span class="result-label">Koszt:</span>
+                            <span class="result-value" id="resultOldCost">-</span>
+                        </div>
+
+                        <hr style="margin: 1.5rem 0; border: none; border-top: 1px solid var(--color-border);">
+
+                        <div class="result-row">
+                            <span class="result-label"><strong>Nowe oświetlenie LED (roczne):</strong></span>
+                        </div>
+                        <div class="result-row">
+                            <span class="result-label">Zużycie energii:</span>
+                            <span class="result-value" id="resultNewConsumption">-</span>
+                        </div>
+                        <div class="result-row">
+                            <span class="result-label">Koszt:</span>
+                            <span class="result-value" id="resultNewCost">-</span>
+                        </div>
+
+                        <hr style="margin: 1.5rem 0; border: none; border-top: 1px solid var(--color-border);">
+
+                        <div class="result-row highlight">
+                            <span class="result-label">Roczna oszczędność:</span>
+                            <span class="result-value" id="resultYearlySavings">-</span>
+                        </div>
+
+                        <div class="result-row">
+                            <span class="result-label">Koszt wymiany opraw:</span>
+                            <span class="result-value" id="resultReplacementCost">-</span>
+                        </div>
+
+                        <div class="roi-box">
+                            <div class="roi-value" id="resultROI">-</div>
+                            <div class="roi-label">Zwrot inwestycji</div>
+                        </div>
+
+                        <hr style="margin: 1.5rem 0; border: none; border-top: 1px solid var(--color-border);">
+
+                        <div class="result-row">
+                            <span class="result-label">Zysk po 1 roku:</span>
+                            <span class="result-value" id="resultProfit1Year">-</span>
+                        </div>
+                        <div class="result-row">
+                            <span class="result-label">Zysk po 5 latach:</span>
+                            <span class="result-value" id="resultProfit5Years">-</span>
+                        </div>
+                    </div>
+                    <div class="cta-buttons-group" style="margin-top: 2rem;">
+                        <a href="#dla-wlasciciela" class="cta-section-btn">👤 Dla Właściciela</a>
+                        <a href="#dla-najemcy" class="cta-section-btn secondary">👥 Dla Najemcy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OWNER SECTION -->
+    <section class="info-section" id="dla-wlasciciela">
+        <div class="container">
+            <h2 class="section-title">Dla Właściciela</h2>
+        </div>
+    </section>
+
+    <!-- TENANT SECTION -->
+    <section class="info-section" id="dla-najemcy">
+        <div class="container">
+            <h2 class="section-title">Dla Najemcy</h2>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section class="faq-section" id="faq">
+        <div class="container">
+            <h2 class="section-title">Najczęściej Zadawane Pytania</h2>
+            <div class="faq-container">
+                <details class="faq-item">
+                    <summary>Czy proponowana cena za wymianę opraw jest gwarantowana?</summary>
+                    <p>Tak, jest to oficjalna cena wymiany opraw od sztuki.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Czy na nowe oprawy obowiązuje gwarancja?</summary>
+                    <p>Tak, na instalowane oprawy obowiązuje x lat gwarancji producenta.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Jak długo trwa instalacja oświetlenia?</summary>
+                    <p>Zależnie od wielkości projektu, instalacja zazwyczaj trwa od 1 do 3 dni i jest przeprowadzana bez zakłóceń w codziennej pracy biura.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFOLIO SECTION -->
+    <section class="portfolio-section" id="portfolio">
+        <div class="container">
+            <h2 class="section-title">Nasze Realizacje</h2>
+            
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        [Zdjęcie biura 1]
+                    </div>
+                    <div class="portfolio-content">
+                        <h4>Biuro Technologiczne</h4>
+                        <p>Renowacja 120 opraw LED, oszczędność 15 000 PLN/rok</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        [Zdjęcie biura 2]
+                    </div>
+                    <div class="portfolio-content">
+                        <h4>Centrum Biznesowe</h4>
+                        <p>Kompleksna renowacja 85 opraw, ROI 9 miesięcy</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        [Zdjęcie biura 3]
+                    </div>
+                    <div class="portfolio-content">
+                        <h4>Kancelaria Prawnicza</h4>
+                        <p>Instalacja 50 opraw LED, lepszy komfort wizualny</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS SECTION -->
+    <section class="testimonials-section">
+        <div class="container">
+            <h2 class="section-title">Opinie Naszych Klientów</h2>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        "Profesjonalnie wykonana praca. Oszczędzamy prawie 10 000 PLN rocznie. Polecamy!"
+                    </div>
+                    <div class="testimonial-author">Jan Kowalski</div>
+                    <div class="testimonial-company">Director, TechCorp Poland</div>
+                </div>
+
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        "Od razu widać różnicę w jakości oświetlenia. Pracownicy są bardziej produktywni."
+                    </div>
+                    <div class="testimonial-author">Maria Nowak</div>
+                    <div class="testimonial-company">HR Manager, Consulting Plus</div>
+                </div>
+
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        "Szybka instalacja bez zakłóceń w pracy. Zwrot inwestycji w niespełna roku."
+                    </div>
+                    <div class="testimonial-author">Piotr Lewandowski</div>
+                    <div class="testimonial-company">Owner, Marketing Agency</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="contact-section" id="kontakt">
+        <div class="container">
+            <h2>Gotów na Zmianę?</h2>
+            <p>Skontaktuj się z nami aby uzyskać wycenę dla Twojego biura</p>
+
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h4>📞 Telefon</h4>
+                    <p>+48 123 456 789</p>
+                </div>
+                <div class="contact-item">
+                    <h4>📧 Email</h4>
+                    <p>info@lightingreno.pl</p>
+                </div>
+                <div class="contact-item">
+                    <h4>📍 Lokalizacja</h4>
+                    <p>Warszawa, Polska</p>
+                </div>
+            </div>
+
+            <a href="mailto:info@lightingreno.pl" class="cta-button">Wyślij Zapytanie</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2024 LightingReno. Wszelkie prawa zastrzeżone.</p>
+    </footer>
+
+    <!-- CHAT WIDGET -->
+    <div class="chat-widget">
+        <button class="chat-bubble-btn" id="chatBubbleBtn">💬</button>
+        
+        <div class="chat-container" id="chatContainer">
+            <div class="chat-header">
+                <h3>💡 LightingReno Assistant</h3>
+                <button class="chat-close-btn" id="chatCloseBtn">×</button>
+            </div>
+            
+            <div class="chat-messages" id="chatMessages"></div>
+            
+            <div class="chat-input-area">
+                <input 
+                    type="text" 
+                    id="chatInput" 
+                    class="chat-input" 
+                    placeholder="Twoja odpowiedź..."
+                    autocomplete="off"
+                >
+                <button class="chat-send-btn" id="chatSendBtn">Wyślij</button>
+                <div class="chat-error" id="chatError"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        // CALCULATOR LOGIC
+        const calculatorForm = document.getElementById('calculatorForm');
+        const resultsContainer = document.getElementById('resultsContainer');
+        const errorMessage = document.getElementById('errorMessage');
+        const heroFixturesInput = document.getElementById('heroNumberOfFixtures');
+        const calculatorFixturesInput = document.getElementById('numberOfFixtures');
+
+        // STAŁE
+        const WATTAGE_NEW = 34.5;      // LED
+        const COST_PER_KWH = 1;        // PLN
+        const DAYS_PER_YEAR = 365;
+        const REPLACEMENT_COST_PER_FIXTURE = 150;  // PLN
+
+        // Synchronizuj pola liczby opraw
+        heroFixturesInput.addEventListener('input', function() {
+            calculatorFixturesInput.value = this.value;
+            updateQuickSavings();
+        });
+
+        calculatorFixturesInput.addEventListener('input', function() {
+            heroFixturesInput.value = this.value;
+            updateQuickSavings();
+        });
+
+        calculatorForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            calculateSavings();
+        });
+
+        // Update quick savings display
+        function updateQuickSavings() {
+            const numberOfFixtures = parseFloat(heroFixturesInput.value) || 0;
+            
+            if (numberOfFixtures <= 0) {
+                document.getElementById('quickSavingsValue').textContent = '0 PLN';
+                document.getElementById('quickSavingsSubtext').textContent = 'Wpisz liczbę opraw wyżej';
+                document.getElementById('quickConsumptionOld').textContent = '0 kWh';
+                document.getElementById('quickConsumptionNew').textContent = '0 kWh';
+                document.getElementById('quickROI').textContent = '-';
+                return;
+            }
+
+            const wattageOld = 72; // Default values
+            const hoursPerDay = 12;
+            const hoursPerYear = hoursPerDay * DAYS_PER_YEAR;
+            
+            const totalPowerOldKw = (numberOfFixtures * wattageOld) / 1000;
+            const totalPowerNewKw = (numberOfFixtures * WATTAGE_NEW) / 1000;
+
+            const yearlyConsumptionOld = totalPowerOldKw * hoursPerYear;
+            const yearlyConsumptionNew = totalPowerNewKw * hoursPerYear;
+
+            const yearlySavings = (yearlyConsumptionOld - yearlyConsumptionNew) * COST_PER_KWH;
+            const totalReplacementCost = numberOfFixtures * REPLACEMENT_COST_PER_FIXTURE;
+            const roiYears = totalReplacementCost / yearlySavings;
+            const roiMonths = Math.round(roiYears * 12);
+
+            document.getElementById('quickSavingsValue').textContent = yearlySavings.toLocaleString('pl-PL', {maximumFractionDigits: 0}) + ' PLN';
+            document.getElementById('quickSavingsSubtext').textContent = `rocznie dla ${numberOfFixtures} opraw`;
+            document.getElementById('quickConsumptionOld').textContent = yearlyConsumptionOld.toLocaleString('pl-PL', {maximumFractionDigits: 0}) + ' kWh';
+            document.getElementById('quickConsumptionNew').textContent = yearlyConsumptionNew.toLocaleString('pl-PL', {maximumFractionDigits: 0}) + ' kWh';
+            
+            const roiDisplay = roiYears < 1 
+                ? `${roiMonths} miesięcy` 
+                : `${roiYears.toFixed(1)} lat`;
+            document.getElementById('quickROI').textContent = roiDisplay;
+        }
+
+        // Initial update
+        updateQuickSavings();
+
+        function calculateSavings() {
+            // INPUT
+            const numberOfFixtures = parseFloat(document.getElementById('numberOfFixtures').value);
+            const wattageOld = parseFloat(document.getElementById('wattageOld').value);
+            const hoursPerDay = parseFloat(document.getElementById('hoursPerDay').value);
+
+            // VALIDATION
+            if (!numberOfFixtures || !wattageOld || !hoursPerDay) {
+                showError('Proszę wypełnić wszystkie pola');
+                return;
+            }
+
+            if (numberOfFixtures <= 0 || wattageOld <= 0 || hoursPerDay <= 0) {
+                showError('Wszystkie wartości muszą być większe od zera');
+                return;
+            }
+
+            errorMessage.classList.add('hidden');
+
+            // OBLICZENIA
+            const hoursPerYear = hoursPerDay * DAYS_PER_YEAR;
+            
+            const totalPowerOldKw = (numberOfFixtures * wattageOld) / 1000;  // kW
+            const totalPowerNewKw = (numberOfFixtures * WATTAGE_NEW) / 1000;  // kW
+
+            const yearlyConsumptionOld = totalPowerOldKw * hoursPerYear;  // kWh
+            const yearlyConsumptionNew = totalPowerNewKw * hoursPerYear;  // kWh
+
+            const yearlyCostOld = yearlyConsumptionOld * COST_PER_KWH;    // PLN
+            const yearlyCostNew = yearlyConsumptionNew * COST_PER_KWH;    // PLN
+
+            const yearlySavings = yearlyCostOld - yearlyCostNew;  // PLN
+            const totalReplacementCost = numberOfFixtures * REPLACEMENT_COST_PER_FIXTURE;  // PLN
+
+            const roiYears = totalReplacementCost / yearlySavings;
+            const roiMonths = Math.round(roiYears * 12);
+
+            const profit1Year = yearlySavings - totalReplacementCost;
+            const profit5Years = (yearlySavings * 5) - totalReplacementCost;
+
+            // DISPLAY RESULTS
+            document.getElementById('resultFixtures').textContent = numberOfFixtures.toFixed(0);
+            document.getElementById('resultHoursPerYear').textContent = hoursPerYear.toLocaleString('pl-PL', {maximumFractionDigits: 0});
+
+            document.getElementById('resultOldConsumption').textContent = yearlyConsumptionOld.toLocaleString('pl-PL', {maximumFractionDigits: 2}) + ' kWh';
+            document.getElementById('resultOldCost').textContent = yearlyCostOld.toLocaleString('pl-PL', {maximumFractionDigits: 2}) + ' PLN';
+
+            document.getElementById('resultNewConsumption').textContent = yearlyConsumptionNew.toLocaleString('pl-PL', {maximumFractionDigits: 2}) + ' kWh';
+            document.getElementById('resultNewCost').textContent = yearlyCostNew.toLocaleString('pl-PL', {maximumFractionDigits: 2}) + ' PLN';
+
+            document.getElementById('resultYearlySavings').textContent = yearlySavings.toLocaleString('pl-PL', {maximumFractionDigits: 2}) + ' PLN';
+            document.getElementById('resultReplacementCost').textContent = totalReplacementCost.toLocaleString('pl-PL', {maximumFractionDigits: 2}) + ' PLN';
+
+            const roiDisplay = roiYears < 1 
+                ? `${roiMonths} miesięcy` 
+                : `${roiYears.toFixed(2)} lat (${roiMonths} miesięcy)`;
+            document.getElementById('resultROI').textContent = roiDisplay;
+
+            document.getElementById('resultProfit1Year').textContent = profit1Year.toLocaleString('pl-PL', {maximumFractionDigits: 2}) + ' PLN';
+            document.getElementById('resultProfit5Years').textContent = profit5Years.toLocaleString('pl-PL', {maximumFractionDigits: 2}) + ' PLN';
+
+            resultsContainer.classList.remove('hidden');
+
+            // SCROLL TO RESULTS
+            setTimeout(() => {
+                resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+        }
+
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.classList.remove('hidden');
+            resultsContainer.classList.add('hidden');
+        }
+
+        // ALLOW ENTER TO SUBMIT
+        document.getElementById('hoursPerDay').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                calculatorForm.dispatchEvent(new Event('submit'));
+            }
+        });
+
+        // ============= CHAT WIDGET LOGIC =============
+        const chatBubbleBtn = document.getElementById('chatBubbleBtn');
+        const chatCloseBtn = document.getElementById('chatCloseBtn');
+        const chatContainer = document.getElementById('chatContainer');
+        const chatMessages = document.getElementById('chatMessages');
+        const chatInput = document.getElementById('chatInput');
+        const chatSendBtn = document.getElementById('chatSendBtn');
+        const chatError = document.getElementById('chatError');
+
+        let chatState = 'greeting'; // greeting, email, phone
+        let leadData = { email: null, phone: null };
+
+        // Toggle chat
+        chatBubbleBtn.addEventListener('click', () => {
+            chatContainer.classList.add('active');
+            chatBubbleBtn.style.display = 'none';
+            chatInput.focus();
+            
+            // Initialize chat if empty
+            if (chatMessages.children.length === 0) {
+                initializeChat();
+            }
+        });
+
+        chatCloseBtn.addEventListener('click', () => {
+            chatContainer.classList.remove('active');
+            chatBubbleBtn.style.display = 'flex';
+        });
+
+        // Send message
+        chatSendBtn.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && chatInput.value.trim()) {
+                sendMessage();
+            }
+        });
+
+        function initializeChat() {
+            addBotMessage('Witaj! 👋 Jestem asystentem LightingReno. Chciałbym poznać Twoje dane do kontaktu, aby możemy wysłać Ci szczegółową ofertę. Zacznijmy od adresu email - jakich go masz?');
+        }
+
+        function addBotMessage(text) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = 'chat-message bot';
+            msgDiv.innerHTML = `<div class="message-content">${text}</div>`;
+            chatMessages.appendChild(msgDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function addUserMessage(text) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = 'chat-message user';
+            msgDiv.innerHTML = `<div class="message-content">${text}</div>`;
+            chatMessages.appendChild(msgDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function sendMessage() {
+            const message = chatInput.value.trim();
+            if (!message) return;
+
+            addUserMessage(message);
+            chatInput.value = '';
+            chatError.textContent = '';
+            chatSendBtn.disabled = true;
+
+            setTimeout(() => {
+                handleChatMessage(message);
+                chatSendBtn.disabled = false;
+                chatInput.focus();
+            }, 500);
+        }
+
+        function handleChatMessage(message) {
+            if (chatState === 'greeting') {
+                // Validate email
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(message)) {
+                    chatError.textContent = 'Proszę wpisz poprawny adres email (np. jan@example.com)';
+                    return;
+                }
+
+                leadData.email = message;
+                chatState = 'email';
+                
+                // Save email to database (simulated)
+                saveLead(message, null);
+                
+                addBotMessage(`Dzięki! 📧 Email ${message} został zapisany.\n\nTeraz chciałbym mieć Twój numer telefonu, aby móc się z Tobą skontaktować. Jaki to numer?`);
+            } 
+            else if (chatState === 'email') {
+                // Validate phone
+                const phoneRegex = /^[\d\s\-\+\(\)]{9,}$/;
+                if (!phoneRegex.test(message)) {
+                    chatError.textContent = 'Proszę wpisz poprawny numer telefonu';
+                    return;
+                }
+
+                leadData.phone = message;
+                chatState = 'phone';
+                
+                // Update lead in database
+                updateLead(leadData.email, message);
+                
+                addBotMessage(`Świetnie! 📱 Numer ${message} został zapisany.\n\nDzięki za dane! Wkrótce skontaktujemy się z Tobą w sprawie bezpłatnej wyceny. 🚀\n\nMasz pytania? Napisz do nas na info@lightingreno.pl`);
+                chatInput.disabled = true;
+                chatSendBtn.disabled = true;
+            }
+        }
+
+        // Simulated database functions (replace with real API calls later)
+        function saveLead(email, phone) {
+            // In production, this would call an API endpoint
+            console.log('Saving lead:', { email, phone });
+            // Example API call:
+            // fetch('/api/leads', { method: 'POST', body: JSON.stringify({email, phone}) })
+        }
+
+        function updateLead(email, phone) {
+            // In production, this would call an API endpoint
+            console.log('Updating lead:', { email, phone });
+            // Example API call:
+            // fetch(`/api/leads/${email}`, { method: 'PUT', body: JSON.stringify({phone}) })
+        }
+    </script>
+</body>
+</html>
