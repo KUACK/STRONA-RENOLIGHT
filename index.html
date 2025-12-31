@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tańsze Światło - Renowacja Oświetlenia w Biurach</title>
     <link rel="stylesheet" href="styles.css" />
-    <script src="main.js"></script>
   </head>
 
   <body>
@@ -37,10 +36,8 @@
               min="1"
               value="60"
             />
-            <small style="display: block; margin-top: 0.5rem"
-              >Wprowadź liczbę opraw, aby zobaczyć oszczędności</small
-            >
-            <div class="cta-buttons-group" style="margin-top: 1rem">
+
+            <div class="cta-buttons-group" style="margin-top: 0rem">
               <a href="#quick-savings" class="cta-section-btn"
                 >Zobacz Oszczędności</a
               >
@@ -53,13 +50,99 @@
     <!-- QUICK SAVINGS PREVIEW SECTION -->
     <section class="quick-savings-section" id="quick-savings">
       <div class="container">
-        <div class="savings-card">
-          <h2>Twoje Oszczędności</h2>
-          <div class="savings-display">
-            <span class="savings-value" id="quickSavingsValue">0 PLN</span>
-            <span class="savings-value"> ROCZNIE</span>
+        <div class="qs-carousel">
+          <button
+            class="qs-arrow qs-arrow--left qs-cloud"
+            type="button"
+            aria-label="Jestem Właścicielem. Pokaż moje korzyści"
+          >
+            Jestem Właścicielem. Pokaż moje korzyści
+          </button>
+
+          <div class="qs-track" id="qsTrack">
+            <!-- LEWY -->
+            <div class="savings-card" data-slide="left">
+              <h2>Korzyści dla Właściciela</h2>
+              <ul class="qs-benefits">
+                <li>Wyższa atrakcyjność oferty najmu.</li>
+                <li>
+                  Możliwość uzasadnienia wyższej stawki czynszu dzięki wyższemu
+                  standardowi.
+                </li>
+                <li>Mniej zgłoszeń i awarii = niższe koszty serwisu.</li>
+                <li>Wzrost wartości i prestiżu nieruchomości.</li>
+                <li class="leasing">
+                  Możliwość leasingu oświetlenia i wygenerowanie dodatkowych
+                  kosztów.
+                </li>
+              </ul>
+            </div>
+
+            <!-- ŚRODKOWY (TEN, KTÓRY MASZ TERAZ) -->
+            <div
+              class="savings-card savings-card--center"
+              data-slide="center"
+              id="qsCenterSlide"
+            >
+              <h2>Twoje Oszczędności</h2>
+              <div class="savings-display">
+                <span class="savings-value" id="quickSavingsValue">0 PLN</span>
+                <span class="savings-value-PLN"> ROCZNIE</span>
+              </div>
+
+              <div class="qs-preview-metrics">
+                <div class="qs-metric qs-label--muted">
+                  <span class="qs-metric__label">Koszt wymiany:</span>
+                  <span class="qs-metric__value" id="quickReplacementCost"
+                    >0 PLN</span
+                  >
+                </div>
+                <div class="quick-roi">
+                  <div class="qs-metric">
+                    <span class="qs-metric__value" id="quickROI">-</span>
+                    <span class="qs-metric__label">Zwrot po</span>
+                  </div>
+                </div>
+
+                <div class="qs-metric qs-label--bold">
+                  <span class="qs-metric__label">Zysk po 5 latach:</span>
+                  <span class="qs-metric__value" id="quickProfit5Years"
+                    >0 PLN</span
+                  >
+                </div>
+              </div>
+
+              <a href="#kalkulator" class="savings-cta">Jak to obliczamy? →</a>
+            </div>
+
+            <!-- PRAWY -->
+            <div class="savings-card" data-slide="right">
+              <h2>Korzyści dla Najemcy</h2>
+              <ul class="qs-benefits">
+                <li>
+                  Niższe miesięczne koszty użytkowania oraz przewidywalność
+                  wydatków.
+                </li>
+                <li>Wyższa produktywność oraz komfort na co dzień.</li>
+                <li>
+                  Mniej stresu związanego z usterkami i przerwami w działaniu.
+                </li>
+                <li>Lepsze warunki do pracy i odpoczynku.</li>
+                <li class="leasing">
+                  Oszczędność już w pierwszym roku użytkowania!
+                </li>
+              </ul>
+            </div>
           </div>
-          <a href="#kalkulator" class="savings-cta">Jak to obliczamy? →</a>
+
+          <button
+            class="qs-arrow qs-arrow--right qs-cloud"
+            type="button"
+            aria-label="Jestem Najemcą. Pokaż moje korzyści"
+          >
+            Jestem Najemcą.<br />
+            Pokaż moje korzyści
+          </button>
         </div>
       </div>
     </section>
@@ -71,10 +154,12 @@
 
         <div class="calculator-wrapper">
           <!-- FORM -->
-          <div>
+          <div class="calculator-form-card">
             <form id="calculatorForm">
               <div class="form-group">
-                <label for="numberOfFixtures">Liczba opraw do wymiany</label>
+                <label for="numberOfFixtures"
+                  >Liczba opraw do wymiany (sufit podwieszany)</label
+                >
                 <input
                   type="number"
                   id="numberOfFixtures"
@@ -114,6 +199,19 @@
               </div>
 
               <div class="form-group">
+                <label for="costPerKwh">Koszt za 1 kWh w PLN</label>
+                <input
+                  type="number"
+                  id="costPerKwh"
+                  placeholder="np. 1.11"
+                  min="0"
+                  step="0.01"
+                  value="1.11"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
                 <label for="numberOfSensors"
                   >Planowana ilość czujników zmierzchu/ruchu</label
                 >
@@ -138,6 +236,16 @@
                   value="0"
                 />
               </div>
+              <div class="form-group">
+                <label for="fixtureType">Typ nowej oprawy</label>
+                <select id="fixtureType" required>
+                  <option value="149">Standard (GTV) - 149 PLN/szt</option>
+                  <option value="399">
+                    Plus (Lena Lighting) - 399 PLN/szt
+                  </option>
+                  <option value="499">Premium (Phillips) - 499 PLN/szt</option>
+                </select>
+              </div>
 
               <button type="submit">Oblicz Oszczędności</button>
             </form>
@@ -150,126 +258,68 @@
             <div class="results">
               <h3>Wyniki Kalkulacji</h3>
 
-              <div class="result-row">
-                <span class="result-label">Liczba opraw:</span>
-                <span class="result-value" id="resultFixtures">-</span>
-              </div>
-
-              <div class="result-row">
-                <span class="result-label">Godziny pracy/rok:</span>
-                <span class="result-value" id="resultHoursPerYear">-</span>
-              </div>
-
-              <hr
-                style="
-                  margin: 1.5rem 0;
-                  border: none;
-                  border-top: 1px solid var(--color-border);
-                "
-              />
-
-              <div class="result-row">
-                <span class="result-label"
-                  ><strong>Obecne oświetlenie (roczne):</strong></span
-                >
-              </div>
-              <div class="result-row">
-                <span class="result-label">Zużycie energii:</span>
-                <span class="result-value" id="resultOldConsumption">-</span>
-              </div>
-              <div class="result-row">
-                <span class="result-label">Koszt:</span>
-                <span class="result-value" id="resultOldCost">-</span>
-              </div>
-
-              <hr
-                style="
-                  margin: 1.5rem 0;
-                  border: none;
-                  border-top: 1px solid var(--color-border);
-                "
-              />
-
-              <div class="result-row">
-                <span class="result-label"
-                  ><strong>Nowe oświetlenie LED (roczne):</strong></span
-                >
-              </div>
-              <div class="result-row">
-                <span class="result-label">Zużycie energii:</span>
-                <span class="result-value" id="resultNewConsumption">-</span>
-              </div>
-              <div class="result-row">
-                <span class="result-label">Koszt:</span>
-                <span class="result-value" id="resultNewCost">-</span>
-              </div>
-
-              <hr
-                style="
-                  margin: 1.5rem 0;
-                  border: none;
-                  border-top: 1px solid var(--color-border);
-                "
-              />
-
+              <!-- 1) Roczna oszczędność -->
               <div class="result-row highlight">
-                <span class="result-label-main">Roczna oszczędność:</span>
+                <span class="result-label-main">Roczna oszczędność</span>
                 <span class="result-value-main" id="resultYearlySavings"
                   >-</span
                 >
               </div>
 
+              <!-- 2) Koszty wymiany -->
               <div class="result-row">
-                <span class="result-label">Koszt wymiany opraw:</span>
+                <span class="result-label">Koszty wymiany</span>
                 <span class="result-value" id="resultReplacementCost">-</span>
               </div>
 
+              <!-- 3) Zwrot po (xx czasu) -->
               <div class="roi-box">
                 <div class="roi-value" id="resultROI">-</div>
-                <div class="roi-label">Zwrot inwestycji</div>
+                <div class="roi-label">Zwrot po</div>
               </div>
 
-              <hr
-                style="
-                  margin: 1.5rem 0;
-                  border: none;
-                  border-top: 1px solid var(--color-border);
-                "
-              />
-
+              <!-- 4) Zysk po 5 latach -->
               <div class="result-row">
-                <span class="result-label">Zysk po 1 roku:</span>
-                <span class="result-value" id="resultProfit1Year">-</span>
-              </div>
-              <div class="result-row">
-                <span class="result-label">Zysk po 5 latach:</span>
+                <span class="result-label">Zysk po 5 latach wyniesie</span>
                 <span class="result-value" id="resultProfit5Years">-</span>
               </div>
-            </div>
-            <div class="cta-buttons-group" style="margin-top: 2rem">
-              <a href="#dla-wlasciciela" class="cta-section-btn"
-                >👤 Dla Właściciela</a
-              >
-              <a href="#dla-najemcy" class="cta-section-btn secondary"
-                >👥 Dla Najemcy</a
-              >
+
+              <div class="results-compare">
+                <div class="compare-col">
+                  <div class="compare-title">Obecne</div>
+
+                  <div class="compare-row">
+                    <span class="compare-label">Zużycie</span>
+                    <span class="compare-value" id="resultOldConsumption"
+                      >-</span
+                    >
+                  </div>
+
+                  <div class="compare-row">
+                    <span class="compare-label">Koszt</span>
+                    <span class="compare-value" id="resultOldCost">-</span>
+                  </div>
+                </div>
+
+                <div class="compare-col">
+                  <div class="compare-title">Nowe</div>
+
+                  <div class="compare-row">
+                    <span class="compare-label">Zużycie</span>
+                    <span class="compare-value" id="resultNewConsumption"
+                      >-</span
+                    >
+                  </div>
+
+                  <div class="compare-row">
+                    <span class="compare-label">Koszt</span>
+                    <span class="compare-value" id="resultNewCost">-</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- OWNER SECTION -->
-    <section class="info-section" id="dla-wlasciciela">
-      <div class="container">
-        <h2 class="section-title">Dla Właściciela</h2>
-      </div>
-    </section>
-
-    <!-- TENANT SECTION -->
-    <section class="info-section" id="dla-najemcy">
-      <div class="container">
-        <h2 class="section-title">Dla Najemcy</h2>
       </div>
     </section>
 
@@ -403,6 +453,16 @@
         >
       </div>
     </section>
+    <h2 class="oddzialy">NASZE ODDZIALY</h2>
+    <div id="map"></div>
+
+    <script src="map.js"></script>
+
+    <script
+      async
+      defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLzYK1GzhgBI5uxZg1HYWIbQgvE4Z1RRc&loading=async&callback=initMap&v=weekly&libraries=marker"
+    ></script>
 
     <!-- FOOTER -->
     <footer>
@@ -432,5 +492,6 @@
         >
       </a>
     </div>
+    <script src="main.js" defer></script>
   </body>
 </html>

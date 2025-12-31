@@ -1,24 +1,20 @@
-/* IMPORT CZCIONEK Z GOOGLE FONTS */
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap");
+@import "https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap";
 
 :root {
-  /* PALETA KOLORÓW W STYLU WIX "CLEAN & CLASSY" */
-  --color-primary: #1f1f1f; /* Głęboka czerń/grafit */
-  --color-secondary: #ffffff; /* Czysta biel */
+  --color-primary: #1f1f1f;
+  --color-secondary: #ffffff;
   --color-accent: #1e3a5f;
   --color-accent-hover: #162c47;
-
   --color-bg: #ffffff;
-  --color-surface: #f9f9f9; /* Bardzo jasny szary dla sekcji tła */
-  --color-text: #3f3f3f; /* Ciemnoszary dla tekstu */
-  --color-text-light: #757575; /* Szary dla opisów */
+  --color-surface: #f9f9f9;
+  --color-text: #3f3f3f;
+  --color-text-light: #757575;
   --color-border: #e0e0e0;
   --color-error: #d32f2f;
-
   --shadow-card: 0 10px 40px rgba(0, 0, 0, 0.06);
   --shadow-hover: 0 15px 50px rgba(0, 0, 0, 0.1);
-  --radius-std: 0px; /* Wix często używa ostrych krawędzi lub małych zaokrągleń */
-  --radius-btn: 0px;
+  --radius-std: 0;
+  --radius-btn: 0;
 }
 
 * {
@@ -33,11 +29,15 @@ html {
 }
 
 body {
-  font-family: "Open Sans", sans-serif; /* Tekst główny */
+  font-family: "Open Sans", sans-serif;
   line-height: 1.7;
   color: var(--color-text);
   background-color: var(--color-bg);
   -webkit-font-smoothing: antialiased;
+}
+
+body > section {
+  scroll-margin-top: 0;
 }
 
 h1,
@@ -46,23 +46,22 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Montserrat", sans-serif; /* Nagłówki */
+  font-family: "Montserrat", sans-serif;
   font-weight: 700;
   color: var(--color-primary);
   line-height: 1.2;
-  text-transform: uppercase; /* Stylowe, wielkie litery */
+  text-transform: uppercase;
   letter-spacing: 1px;
 }
 
-/* ============= HEADER ============= */
+/* HEADER */
 header {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   width: 100%;
-  background-color: rgba(255, 255, 255, 0); /* Już jest przezroczyste */
-  /*border-bottom: 1px solid rgba(0, 0, 0, 0.331);*/
+  background-color: rgba(255, 255, 255, 0);
   z-index: 1000;
   padding: 0;
 }
@@ -87,27 +86,26 @@ header {
   text-transform: uppercase;
   border: 2px solid black;
   padding: 0.5rem 1rem;
-  display: inline-block; /* Dodane dla spójności z nav */
+  display: inline-block;
   transition: all 0.3s ease;
 }
 
 nav a {
   margin-left: 2.5rem;
-  display: inline-block; /* Dla padding i border */
+  display: inline-block;
   font-family: "Montserrat", sans-serif;
   font-size: 1rem;
   font-weight: 600;
   background: var(--color-primary);
   color: white;
   text-decoration: none;
-  letter-spacing: 1.5px; /* Lekko zwiększone dla podobieństwa do logo */
+  letter-spacing: 1.5px;
   text-transform: uppercase;
   border: 2px solid black;
   padding: 0.5rem 1rem;
   transition: all 0.3s ease;
 }
 
-/* Nowe efekty hover dla obu */
 .logo:hover,
 nav a:hover {
   transform: scale(1.05);
@@ -115,17 +113,16 @@ nav a:hover {
   border-color: var(--color-accent);
 }
 
-/* ============= HERO SECTION ============= */
+/* HERO SECTION */
 .hero {
   background: linear-gradient(rgba(0, 0, 0, 0.259), rgba(0, 0, 0, 0.322)),
-    url("images/Office1.jpeg") no-repeat center center/cover;
-  /* Jeśli nie masz zdjęcia, użyj ciemnego tła zastępczego */
+    url(images/Office1.jpeg) no-repeat center center/cover;
   background-color: #222;
   color: white;
-  padding: 0 2rem; /* Większy padding góra/dół */
+  padding: 0 2rem;
   text-align: center;
   position: relative;
-  min-height: 100vh; /* Prawie pełny ekran */
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -157,7 +154,921 @@ nav a:hover {
   text-shadow: 0 5px 12px rgba(0, 0, 0, 0.6);
 }
 
-/* Quick Calc w Hero - styl minimalistyczny */
+/* SECTIONS */
+.quick-savings-section,
+.calculator-section,
+.info-section,
+.portfolio-section,
+.testimonials-section,
+.faq-section {
+  padding: 100px 2rem;
+}
+
+.quick-savings-section {
+  padding: 60px 2rem;
+  min-height: 100vh;
+}
+
+.calculator-section {
+  background-color: var(--color-surface);
+  padding: 90px 2rem;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 4rem;
+  color: var(--color-primary);
+  position: relative;
+  padding-bottom: 1.5rem;
+}
+
+.section-title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background-color: var(--color-accent);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* SAVINGS CARD */
+.savings-card {
+  background: #e0e0e013;
+  padding: 3rem;
+  box-shadow: var(--shadow-card);
+  text-align: center;
+  max-width: 1200px;
+  margin: 40px auto 0;
+  border-top: 5px solid var(--color-accent);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.savings-value {
+  font-family: "Montserrat", sans-serif;
+  font-size: 5.5rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  line-height: 1;
+  margin: 1rem 0 0.5rem;
+}
+
+/* CALCULATOR */
+.calculator-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+.calculator-form-card {
+  background: white;
+  padding: 2.5rem;
+  box-shadow: var(--shadow-card);
+  border-top: 5px solid var(--color-accent);
+}
+
+.calculator-form-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+  color: var(--color-primary);
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 0rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 0rem;
+}
+
+.form-group input[type="number"],
+.form-group input[type="text"],
+.form-group select,
+input[type="number"],
+input[type="text"] {
+  width: 100%;
+  padding: 0.9rem;
+  border: 1px solid #ddd;
+  background: white;
+  font-size: 1rem;
+  color: var(--color-primary);
+  transition: border-color 0.3s, box-shadow 0.3s;
+  border-radius: var(--radius-std);
+  font-family: "Open Sans", sans-serif;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+input[type="number"]:focus,
+input[type="text"]:focus {
+  border-color: var(--color-accent);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(30, 58, 95, 0.1);
+}
+
+.form-group button {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+/* RESULTS */
+.results {
+  background: var(--color-primary);
+  color: white;
+  padding: 2rem 2.5rem 2.5rem 2.5rem;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  border-top: 5px solid var(--color-accent);
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.results::-webkit-scrollbar {
+  width: 8px;
+}
+
+.results::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.results::-webkit-scrollbar-thumb {
+  background: var(--color-accent);
+  border-radius: 4px;
+}
+
+.results h3 {
+  color: white;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 1rem;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.result-value-main,
+.result-value {
+  color: white;
+  font-weight: 700;
+  font-size: 1.1rem;
+  font-family: "Montserrat", sans-serif;
+}
+
+.result-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 0rem;
+  padding: 0.9rem 0;
+}
+
+.result-label-main,
+.result-label {
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 400;
+  font-size: 0.95rem;
+}
+
+.result-row.highlight {
+  background-color: var(--color-accent);
+  border-radius: 0;
+  border-bottom: none;
+}
+
+.result-row.highlight .result-label {
+  color: white;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+.result-row.highlight .result-value {
+  color: white;
+  font-size: 1.6rem;
+}
+
+.results-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+
+  /*border-top: 2px solid rgba(255, 255, 255, 0.2);*/
+}
+
+.compare-col {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1.5rem;
+  border-radius: var(--radius-std);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.compare-title {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: white;
+  margin-bottom: 1rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 2px solid var(--color-accent);
+  text-align: center;
+}
+
+.compare-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.compare-row:last-child {
+  border-bottom: none;
+  padding-top: 1rem;
+}
+
+.compare-label {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.compare-value {
+  color: white;
+  font-weight: 700;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1rem;
+}
+
+.roi-box {
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+  padding: 0rem;
+  text-align: center;
+  border-radius: var(--radius-std);
+}
+
+.roi-label {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.7rem;
+  opacity: 0.8;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.roi-value {
+  font-size: 2rem;
+  font-weight: 700;
+  font-family: "Montserrat", sans-serif;
+}
+
+/* PORTFOLIO */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.portfolio-item {
+  background: white;
+  border-radius: 0;
+  box-shadow: none;
+  transition: transform 0.4s;
+  cursor: pointer;
+}
+
+.portfolio-item:hover {
+  transform: translateY(-10px);
+}
+
+.portfolio-image {
+  height: 300px;
+  background-color: #ddd;
+  position: relative;
+}
+
+.portfolio-image::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(198, 168, 124, 0.8);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.portfolio-item:hover .portfolio-image::after {
+  opacity: 1;
+}
+
+.portfolio-content {
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+.portfolio-content h4 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* TESTIMONIALS */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.testimonial {
+  background: white;
+  padding: 2rem;
+  box-shadow: var(--shadow-card);
+  text-align: center;
+  border-top: 5px solid var(--color-accent);
+}
+
+.testimonial-text {
+  font-style: italic;
+  margin-bottom: 1rem;
+  color: var(--color-text-light);
+}
+
+.testimonial-author {
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.testimonial-company {
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+}
+
+/* FAQ */
+.faq-section {
+  background-color: var(--color-surface);
+}
+
+.faq-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.faq-item summary {
+  cursor: pointer;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  padding: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--color-primary);
+}
+
+.faq-item summary::after {
+  content: "+";
+  font-size: 1.5rem;
+  color: var(--color-accent);
+}
+
+.faq-item[open] summary::after {
+  content: "-";
+}
+
+.faq-item p {
+  padding: 0 0 1rem;
+  color: var(--color-text-light);
+}
+
+/* CONTACT */
+.contact-section {
+  background-color: #1a1a1a;
+  color: white;
+  position: relative;
+  padding: 100px 2rem;
+  text-align: center;
+}
+
+.contact-section h2 {
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.contact-section p {
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 3rem;
+}
+
+.contact-info {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  margin-bottom: 3rem;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contact-item {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 2.5rem;
+  min-width: 280px;
+  text-align: center;
+}
+
+.contact-item h4 {
+  color: var(--color-accent);
+  margin-bottom: 1rem;
+}
+
+.contact-item p {
+  color: white;
+  margin: 0;
+}
+
+/* FOOTER */
+footer {
+  background-color: black;
+  color: #666;
+  padding: 2rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-top: 1px solid #222;
+  text-align: center;
+}
+
+/* WIDGETS */
+.chat-widget {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  z-index: 9999;
+}
+
+.chat-bubble-btn {
+  background: var(--color-accent);
+  color: white;
+  border: none;
+  width: 120px;
+  height: 120px;
+  border-radius: 100%;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.chat-bubble-btn img {
+  filter: brightness(0) invert(1);
+}
+
+.chat-bubble-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 32px rgba(102, 126, 234, 0.6);
+}
+
+.phone-widget {
+  position: fixed;
+  bottom: 170px;
+  right: 40px;
+  z-index: 9999;
+}
+
+.phone-bubble-btn {
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  color: white;
+  border: none;
+  width: 120px;
+  height: 120px;
+  border-radius: 100%;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(17, 153, 142, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  position: relative;
+}
+
+.phone-bubble-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 32px rgba(17, 153, 142, 0.6);
+}
+
+.phone-bubble-btn img {
+  width: 28px;
+  height: 28px;
+  filter: brightness(0) invert(1);
+}
+
+.phone-tooltip {
+  visibility: hidden;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  color: white;
+  text-align: center;
+  padding: 12px 16px;
+  border-radius: 8px;
+  position: absolute;
+  bottom: 70px;
+  right: 0;
+  width: 220px;
+  font-size: 14px;
+  line-height: 1.4;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 10000;
+}
+
+.phone-tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  right: 18px;
+  border-width: 8px;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.9) transparent transparent;
+}
+
+.phone-bubble-btn:hover .phone-tooltip {
+  visibility: visible;
+  opacity: 1;
+  bottom: 75px;
+}
+
+/* UTILITY */
+.hidden {
+  display: none;
+}
+
+.error-message {
+  color: var(--color-error);
+  margin-top: 1rem;
+}
+
+/* MEDIA QUERIES */
+@media (max-width: 968px) {
+  .calculator-wrapper {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .results {
+    max-height: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero {
+    padding: 120px 1rem 80px;
+  }
+
+  .calculator-wrapper {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .calculator-form-card,
+  .results {
+    padding: 1.5rem;
+  }
+
+  .header-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  nav a {
+    margin: 0 0.8rem;
+    margin-left: 0;
+    font-size: 0.75rem;
+  }
+
+  .contact-info {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .contact-item {
+    min-width: auto;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .results-compare {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .results h3 {
+    font-size: 1.1rem;
+  }
+
+  .result-value-main,
+  .result-value {
+    font-size: 1rem;
+  }
+}
+
+.calculator-section .section-title {
+  margin-bottom: 40px;
+}
+
+/* Ulepszony styl kontenera formularza */
+.calculator-form-card {
+  background: white;
+  padding: 3rem 3rem 2rem 3rem; /* Nieco więcej oddechu wewnątrz karty */
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08); /* Bardziej miękki, nowoczesny cień */
+  border-radius: 12px; /* Zaokrąglenie rogów całej karty */
+  border-top: none; /* Usuwamy grubą kreskę na górze na rzecz czystszego designu */
+  position: relative;
+  overflow: hidden;
+}
+
+/* Opcjonalnie: Delikatny akcent na górze jako pasek (zamiast border-top) */
+.calculator-form-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(
+    90deg,
+    var(--color-accent),
+    #2c5282
+  ); /* Gradient wygląda bardziej pro */
+}
+
+/* Stylowanie poszczególnych grup pól */
+.form-group {
+  /* margin-bottom: 1.5rem;  Większy odstęp między pytaniami */
+}
+
+/* Nowoczesne etykiety */
+.form-group label {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  font-weight: 700;
+  color: var(--color-primary); /* Nieco łagodniejszy kolor niż czarny */
+  margin: 0.1rem 0rem;
+  transition: color 0.3s ease;
+}
+
+/* Gdy użytkownik kliknie w input, etykieta też się podświetli */
+.form-group:focus-within label {
+  color: var(--color-accent);
+}
+
+/* Profesjonalne pola input i select */
+.form-group input[type="number"],
+.form-group input[type="text"],
+.form-group select {
+  width: 100%;
+  padding: 1rem 1.2rem; /* Większy padding = wygodniejsze pisanie */
+  border: 2px solid #eaTgof; /* Bardzo jasna ramka na start */
+  background-color: #f8f9fa; /* Delikatne szare tło - wyróżnia pole */
+  font-size: 1rem;
+  color: var(--color-primary);
+  border-radius: 8px; /* Nowoczesne zaokrąglenie */
+  font-family: "Open Sans", sans-serif;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Płynna animacja */
+}
+
+/* Stan najechania myszką (Hover) */
+.form-group input:hover,
+.form-group select:hover {
+  background-color: #fff;
+  border-color: #cbd5e0;
+}
+
+/* Stan aktywny (Focus) - kluczowy dla "professional look" */
+.form-group input:focus,
+.form-group select:focus {
+  background-color: #fff;
+  border-color: var(--color-accent);
+  outline: none;
+  /* Efektowna poświata zamiast systemowej ramki */
+  box-shadow: 0 0 0 4px rgba(30, 58, 95, 0.15);
+  transform: translateY(-1px); /* Mikroskopijne uniesienie pola */
+}
+
+/* Stylowanie przycisku "Oblicz Oszczędności" */
+.calculator-form-card button {
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 1.2rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: var(--color-accent);
+  /* Dodanie cienia pod przyciskiem */
+  box-shadow: 0 4px 6px rgba(30, 58, 95, 0.2);
+  border: none;
+}
+
+.calculator-form-card button:hover {
+  box-shadow: 0 8px 15px rgba(30, 58, 95, 0.3);
+  transform: translateY(-2px);
+}
+
+.qs-carousel {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 12px;
+  overflow: hidden;
+  margin-top: 100px;
+}
+
+.qs-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  gap: 16px;
+  touch-action: pan-y;
+  scrollbar-width: none;
+}
+.qs-track::-webkit-scrollbar {
+  display: none;
+}
+
+.qs-track .savings-card {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  max-width: none;
+  margin: 0;
+}
+
+.qs-arrow {
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+/* 2 kolumny dla pól formularza */
+#calculatorForm {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+/* żeby label + input były jeden pod drugim w ramach komórki siatki */
+#calculatorForm .form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+/* przycisk na całą szerokość (obie kolumny) */
+#calculatorForm button[type="submit"] {
+  grid-column: 1 / -1;
+}
+
+/* komunikat błędu też na całą szerokość (jeśli ma się pojawiać pod spodem) */
+#calculatorForm #errorMessage {
+  grid-column: 1 / -1;
+}
+#calculatorForm .form-group:has(#fixtureType) {
+  grid-column: 1 / -1;
+}
+
+.calculator-section {
+  padding: 0px 2rem;
+  height: 100vh;
+  padding-top: 150px;
+}
+
+/* CHMURKI dla strzałek w karuzeli */
+.qs-arrow.qs-cloud {
+  /* nadpisanie "kółka 44x44" z .qs-arrow */
+  width: auto;
+  height: auto;
+
+  /* nadpisanie globalnego button (uppercase itp.) */
+  text-transform: none;
+  letter-spacing: 0;
+
+  padding: 12px 16px;
+  max-width: 220px;
+  line-height: 1.25;
+  text-align: center;
+
+  background: #fff;
+  color: var(--color-accent);
+  border: 2px solid var(--color-accent);
+
+  border-radius: 999px;
+  box-shadow: var(--shadow-card);
+
+  position: relative;
+  isolation: isolate; /* żeby pseudo-elementy nie uciekały w warstwach */
+}
+
+/* hover/focus */
+.qs-arrow.qs-cloud:hover,
+.qs-arrow.qs-cloud:focus-visible {
+  background: var(--color-accent);
+  color: #fff;
+  outline: none;
+}
+
+.qs-arrow.qs-cloud:hover::before,
+.qs-arrow.qs-cloud:hover::after,
+.qs-arrow.qs-cloud:focus-visible::before,
+.qs-arrow.qs-cloud:focus-visible::after {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+/* drobna responsywność */
+@media (max-width: 768px) {
+  .qs-arrow.qs-cloud {
+    max-width: 160px;
+    padding: 10px 12px;
+    font-size: 0.8rem;
+  }
+}
+
+/* QUICK SAVINGS: strzałki jako overlay wewnątrz slajdu */
+.quick-savings-section .qs-carousel {
+  position: relative;
+  display: block; /* nadpisuje grid */
+  overflow: hidden; /* chowa track poza "oknem" */
+}
+
+/* track dalej scroll-snap, ale zajmuje całą szerokość */
+.quick-savings-section .qs-track {
+  width: 100%;
+}
+
+/* strzałki w środku (lewa/prawa), na wierzchu slajdu */
+.quick-savings-section .qs-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+/* pozycje */
+.quick-savings-section .qs-arrow--left {
+  left: 16px;
+}
+
+.quick-savings-section .qs-arrow--right {
+  right: 16px;
+}
+
+/* żeby treść slajdu nie wchodziła pod przyciski */
+.quick-savings-section .qs-track .savings-card {
+  padding-left: calc(3rem + 110px);
+  padding-right: calc(3rem + 110px);
+}
+
 .hero-quick-calc {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
@@ -202,8 +1113,7 @@ nav a:hover {
   color: rgba(255, 255, 255, 0.7);
   font-size: 0.8rem;
 }
-
-/* ============= BUTTONS ============= */
+/* BUTTONS */
 .cta-buttons-group {
   display: flex;
   gap: 1.5rem;
@@ -229,7 +1139,6 @@ button,
   border: 2px solid transparent;
 }
 
-/* Primary Button Style */
 .cta-section-btn:not(.secondary),
 button,
 .savings-cta,
@@ -247,7 +1156,6 @@ button:hover,
   box-shadow: 0 5px 15px rgba(198, 168, 124, 0.4);
 }
 
-/* Secondary Button Style */
 .cta-section-btn.secondary {
   background-color: transparent;
   border: 2px solid var(--color-primary);
@@ -260,575 +1168,224 @@ button:hover,
   color: var(--color-primary);
 }
 
-.cta-section-btn.secondary:hover {
-  background-color: var(--color-primary);
-  color: white;
-}
-
+.cta-section-btn.secondary:hover,
 .quick-savings-section .cta-section-btn.secondary:hover,
 .results .cta-section-btn.secondary:hover {
   background-color: var(--color-primary);
   color: white;
 }
 
-/* ============= SECTIONS GENERAL ============= */
-.quick-savings-section,
-.calculator-section,
-.info-section,
-.portfolio-section,
-.testimonials-section,
-.faq-section {
-  padding: 100px 2rem;
-}
-
-.section-title {
-  text-align: center;
-  font-size: 2.2rem;
-  margin-bottom: 4rem;
+/* HERO — input i CTA jak w calculator-section */
+.hero-quick-calc input[type="number"] {
+  width: 100%;
+  padding: 1rem 1.2rem;
+  border: 2px solid #cbd5e0;
+  background-color: #f8f9fa;
+  font-size: 1rem;
   color: var(--color-primary);
-  position: relative;
-  padding-bottom: 1.5rem;
+  border-radius: 8px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 600;
+  text-align: left;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.section-title::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 3px;
-  background-color: var(--color-accent);
+.hero-quick-calc input[type="number"]::placeholder {
+  color: #9aa4b2;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
+.hero-quick-calc input[type="number"]:hover {
+  background-color: #fff;
+  border-color: #cbd5e0;
 }
 
-/* ============= QUICK SAVINGS & CARDS ============= */
-.quick-savings-section {
-  padding: 60px 2rem; /* Mniej miejsca w pionie */
+.hero-quick-calc input[type="number"]:focus {
+  background-color: #fff;
+  border-color: var(--color-accent);
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(30, 58, 95, 0.15);
+  transform: translateY(-1px);
 }
 
-.savings-card {
-  background: white;
-  padding: 3rem; /* Mniej paddingu w pionie */
-  box-shadow: var(--shadow-card);
+/* W hero chcemy “przycisk” na 100% szerokości (jak submit w kalkulatorze) */
+.hero .cta-buttons-group {
+  display: block;
+  width: 100%;
+}
+
+.hero .cta-buttons-group .cta-section-btn {
+  display: block;
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 1.2rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: var(--color-accent);
+  box-shadow: 0 4px 6px rgba(30, 58, 95, 0.648);
+  border: none;
   text-align: center;
-  max-width: 1200px; /* Bardziej rozciągnięta w poziomie */
-  margin: 0 auto;
-  border-top: 5px solid var(--color-accent);
+}
+
+.hero .cta-buttons-group .cta-section-btn:hover {
+  background: var(--color-accent-hover);
+  box-shadow: 0 8px 15px rgba(30, 58, 95, 0.793);
+  transform: translateY(-2px);
+}
+
+/* HERO — węższy input + liczba na środku */
+.hero-quick-calc input[type="number"] {
+  max-width: 0px; /* zmień np. na 240–360px */
+  margin: 0 auto; /* wyśrodkowanie całego pola */
+  text-align: center; /* wyśrodkowanie wpisywanej liczby */
+}
+
+/* HERO — zawsze label nad inputem + większa czcionka */
+.hero-quick-calc {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; /* całość na środku */
 }
 
-.savings-value {
+.hero-quick-calc label {
+  display: block; /* nie wchodzi w linię z inputem */
+  width: 100%;
+  text-align: center;
+  font-size: 1.2rem; /* było 0.8rem */
   font-family: "Montserrat", sans-serif;
-  font-size: 5rem;
+  font-weight: 700;
+}
+
+/* Twoje wcześniejsze zwężanie + liczba na środku */
+.hero-quick-calc input[type="number"] {
+  max-width: 150px; /* ustaw ile chcesz */
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* QUICK SAVINGS — link wygląda jak button z kalkulatora */
+.quick-savings-section a.savings-cta {
+  display: block;
+  width: 100%;
+  max-width: 360px; /* opcjonalnie: żeby nie był mega szeroki */
+  margin: 1.5rem auto 0;
+
+  padding: 1.2rem;
+  border-radius: 8px;
+  font-size: 1rem;
+
+  background: var(--color-accent);
+  color: #fff;
+  text-decoration: none;
+
+  border: none;
+  box-shadow: 0 4px 6px rgba(30, 58, 95, 0.2);
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.quick-savings-section a.savings-cta:hover {
+  background: var(--color-accent-hover);
+  box-shadow: 0 8px 15px rgba(30, 58, 95, 0.3);
+  transform: translateY(-2px);
+}
+.qs-preview-metrics {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-top: 10px;
+}
+
+.quick-roi {
+  border: 4px solid var(--color-primary);
+  padding: 10px 14px;
+  display: inline-block; /* box dopasowany do treści */
+  margin: 15px 0px;
+  color: var(--color-primary);
+}
+
+.quick-roi .qs-metric {
+  display: flex;
+  flex-direction: column; /* spany jeden pod drugim */
+  align-items: center; /* wyśrodkowanie w boxie */
+  gap: 4px;
+  width: 400px;
+}
+
+.quick-roi .qs-metric__label,
+.quick-roi .qs-metric__value {
+  display: block; /* dodatkowe zabezpieczenie układu */
+}
+
+.quick-roi .qs-metric__value {
+  font-size: 2.5rem;
+}
+
+.savings-value-PLN {
+  font-family: "Montserrat", sans-serif;
+  font-size: 3rem;
   font-weight: 700;
   color: var(--color-primary);
   line-height: 1;
   margin: 1rem 0 0.5rem;
+  padding-left: 10px;
 }
 
-/* ============= CALCULATOR FORM ============= */
-.calculator-section {
-  background-color: var(--color-surface);
-}
-
-.calculator-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  max-width: 1000px;
-  margin: 0 auto;
-  align-items: start;
-}
-
-.form-group label {
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-weight: 700;
-  color: var(--color-primary);
-  margin-bottom: 0.8rem;
-}
-
-input[type="number"],
-input[type="text"] {
-  width: 100%;
-  padding: 1rem;
-  border: 1px solid #ddd;
-  background: white;
-  font-size: 1rem;
-  color: var(--color-primary);
-  transition: border-color 0.3s;
-  border-radius: var(--radius-std);
-}
-
-input[type="number"]:focus,
-input[type="text"]:focus {
-  border-color: var(--color-accent);
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(198, 168, 124, 0.1);
-}
-
-/* ============= RESULTS SECTION ============= */
-.results {
-  background: var(--color-primary); /* Dark background for results */
-  color: white;
-  padding: 3rem;
-  box-shadow: var(--shadow-card);
-  position: relative;
-}
-
-.result-value-main {
-  color: white;
-}
-
-.results h3 {
-  color: white;
-  margin-bottom: 2rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding-bottom: 1rem;
-}
-
-.result-row {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 1rem 0;
-  display: flex;
-  justify-content: space-between;
-}
-
-.result-label-main {
-  color: white;
-  font-weight: 400;
-}
-
-.result-label {
-  color: rgba(255, 255, 255, 0.7);
-  font-weight: 400;
-}
-
-.result-value {
-  color: white;
-}
-
-.result-row.highlight {
-  background-color: var(--color-accent);
-  margin: 2rem -3rem;
-  padding: 1.5rem 3rem;
-  border-radius: 0;
-}
-
-.result-row.highlight .result-label {
-  color: rgba(0, 0, 0, 0.7);
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-.result-row.highlight .result-value {
-  color: black;
-  font-size: 1.5rem;
-}
-
-.roi-box {
-  background: transparent;
-  border: 2px solid white;
-  color: white;
-  padding: 1.5rem;
-  margin-top: 2rem;
-  text-align: center;
-}
-
-.roi-box .roi-label {
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-size: 0.7rem;
-}
-
-/* ============= PORTFOLIO ============= */
-.portfolio-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.portfolio-item {
-  background: white;
-  border-radius: 0;
-  box-shadow: none;
-  transition: transform 0.4s;
-  cursor: pointer;
-}
-
-.portfolio-item:hover {
-  transform: translateY(-10px);
-}
-
-.portfolio-image {
-  height: 300px;
-  background-color: #ddd;
-  position: relative;
-}
-
-/* Overlay effect on hover for portfolio */
-.portfolio-image::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(198, 168, 124, 0.8);
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-.portfolio-item:hover .portfolio-image::after {
-  opacity: 1;
-}
-
-.portfolio-content {
-  padding: 2rem 1rem;
-  text-align: center;
-}
-
-.portfolio-content h4 {
-  font-size: 1.1rem;
-  margin-bottom: 0.5rem;
-}
-
-/* ============= TESTIMONIALS ============= */
-.testimonials-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.testimonial {
-  background: white;
-  padding: 2rem;
-  box-shadow: var(--shadow-card);
-  text-align: center;
-  border-top: 5px solid var(--color-accent);
-}
-
-.testimonial-text {
-  font-style: italic;
-  margin-bottom: 1rem;
-  color: var(--color-text-light);
-}
-
-.testimonial-author {
-  font-weight: 700;
-  color: var(--color-primary);
-}
-
-.testimonial-company {
-  font-size: 0.9rem;
-  color: var(--color-text-light);
-}
-
-/* ============= FAQ ============= */
-.faq-section {
-  background-color: var(--color-surface);
-}
-
-.faq-container {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.faq-item {
-  margin-bottom: 1rem;
-  border-bottom: 1px solid var(--color-border);
-}
-
-.faq-item summary {
-  cursor: pointer;
-  font-family: "Montserrat", sans-serif;
+/* Wyszarzenie etykiety (Koszt wymiany) */
+.quick-savings-section .qs-label--muted {
+  color: #3f3f3f;
   font-weight: 600;
-  padding: 1rem 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: var(--color-primary);
-}
-
-.faq-item summary::after {
-  content: "+";
   font-size: 1.5rem;
-  color: var(--color-accent);
 }
 
-.faq-item[open] summary::after {
-  content: "-";
+/* Pogrubienie samego napisu (Zysk po 5 latach) */
+.quick-savings-section .qs-label--bold {
+  color: var(--color-primary);
+  font-weight: 800;
+  font-family: "Montserrat", sans-serif;
+  font-size: 2.5rem;
 }
 
-.faq-item p {
-  padding: 0 0 1rem 0;
-  color: var(--color-text-light);
+.quick-savings-section h2 {
+  font-size: 3rem;
+  margin-bottom: 20px;
 }
 
-/* ============= CONTACT & FOOTER ============= */
-.contact-section {
+/* Tylko wartość ROI (bez napisu "Zwrot po") */
+.quick-savings-section #quickROI {
+  font-size: 3rem; /* ustaw jak chcesz */
+  font-weight: 800;
+  font-family: "Montserrat", sans-serif;
+  color: var(--color-primary);
+  line-height: 1.1;
+}
+
+.qs-benefits {
+  font-size: 1.3rem;
+  width: 600px;
+  color: var(--color-primary);
+  font-weight: 700;
+}
+.qs-benefits li {
+  margin: 10px 0;
+}
+
+.leasing {
+  color: black;
+}
+
+#kontakt-mapa {
+  width: 100%;
+}
+#map {
+  width: 100%;
+  height: 520px;
+} /* ustaw wysokość jak na screenie */
+
+.oddzialy {
+  text-align: center;
   background-color: #1a1a1a;
   color: white;
-  position: relative;
-  padding: 100px 2rem;
-  text-align: center;
-}
-
-.contact-section h2 {
-  color: white;
-  margin-bottom: 1rem;
-}
-
-.contact-section p {
-  color: rgba(255, 255, 255, 0.8);
-  margin-bottom: 3rem;
-}
-
-.contact-info {
-  display: flex;
-  justify-content: center;
-  gap: 4rem; /* Większy gap dla lepszego rozłożenia */
-  margin-bottom: 3rem;
-  max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.contact-item {
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 2.5rem; /* Większy padding dla lepszego wyglądu */
-  min-width: 280px; /* Szersze elementy */
-  text-align: center;
-}
-
-.contact-item h4 {
-  color: var(--color-accent);
-  margin-bottom: 1rem;
-}
-
-.contact-item p {
-  color: white;
-  margin: 0;
-}
-
-.cta-button {
-  margin: 0 auto; /* Centrowanie przycisku */
-}
-
-footer {
-  background-color: black;
-  color: #666;
-  padding: 2rem;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  border-top: 1px solid #222;
-  text-align: center;
-}
-
-/* ============= RESPONSIVE ============= */
-@media (max-width: 768px) {
-  .hero h1 {
-    font-size: 2rem;
-  }
-  .hero {
-    padding: 120px 1rem 80px;
-  }
-  .calculator-wrapper {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-  .savings-value {
-    font-size: 3.5rem;
-  }
-  .header-container {
-    flex-direction: column;
-    gap: 1rem;
-  }
-  nav a {
-    margin: 0 0.8rem;
-    margin-left: 0;
-    font-size: 0.75rem;
-  }
-  .contact-info {
-    flex-direction: column;
-    gap: 2rem;
-  }
-  .contact-item {
-    min-width: auto;
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
-  }
-}
-
-/* Utility */
-.hidden {
-  display: none;
-}
-.error-message {
-  color: var(--color-error);
-  margin-top: 1rem;
-}
-
-/* CHAT WIDGET - Ulepszony styl dla lepszego UX */
-.chat-widget {
-  position: fixed;
-  bottom: 40px;
-  right: 40px;
-  z-index: 9999;
-}
-
-.chat-bubble-btn {
-  background: var(--color-accent);
-  color: white;
-  border: none;
-  width: 120px;
-  height: 120px;
-  border-radius: 100%;
-  cursor: pointer;
-  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.chat-bubble-btn img {
-  filter: brightness(0) invert(1);
-}
-
-.chat-bubble-btn:hover {
-  transform: scale(1.1);
-  box-shadow: 0 12px 32px rgba(102, 126, 234, 0.6);
-}
-
-/* Offset przewijania pod sticky header */
-body > section {
-  scroll-margin-top: 0px;
-}
-/* PHONE WIDGET */
-.phone-widget {
-  position: fixed;
-  bottom: 170px; /* 90px = 20px (bottom chat) + 56px (wysokość chat) + 14px (odstęp) */
-  right: 40px;
-  z-index: 9999;
-}
-
-.phone-bubble-btn {
-  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
-  color: white;
-  border: none;
-  width: 120px;
-  height: 120px;
-  border-radius: 100%;
-  cursor: pointer;
-  box-shadow: 0 8px 24px rgba(17, 153, 142, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  text-decoration: none;
-  position: relative;
-}
-
-.phone-bubble-btn:hover {
-  transform: scale(1.1);
-  box-shadow: 0 12px 32px rgba(17, 153, 142, 0.6);
-}
-
-.phone-bubble-btn img {
-  width: 28px;
-  height: 28px;
-  filter: brightness(0) invert(1); /* Biała ikona */
-}
-
-/* PHONE WIDGET */
-.phone-widget {
-  position: fixed;
-  bottom: 170px; /* 90px = 20px (bottom chat) + 56px (wysokość chat) + 14px (odstęp) */
-  right: 40px;
-  z-index: 9999;
-}
-
-.phone-bubble-btn {
-  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
-  color: white;
-  border: none;
-  width: 120px;
-  height: 120px;
-  border-radius: 100%;
-  cursor: pointer;
-  box-shadow: 0 8px 24px rgba(17, 153, 142, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  text-decoration: none;
-  position: relative;
-}
-
-.phone-bubble-btn:hover {
-  transform: scale(1.1);
-  box-shadow: 0 12px 32px rgba(17, 153, 142, 0.6);
-}
-
-.phone-bubble-btn img {
-  width: 28px;
-  height: 28px;
-  filter: brightness(0) invert(1); /* Biała ikona */
-}
-
-/* TOOLTIP */
-.phone-tooltip {
-  visibility: hidden;
-  opacity: 0;
-  background-color: rgba(0, 0, 0, 0.9);
-  color: white;
-  text-align: center;
-  padding: 12px 16px;
-  border-radius: 8px;
-  position: absolute;
-  bottom: 70px;
-  right: 0;
-  width: 220px;
-  font-size: 14px;
-  line-height: 1.4;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  z-index: 10000;
-}
-
-/* Strzałka tooltipa */
-.phone-tooltip::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  right: 18px;
-  border-width: 8px;
-  border-style: solid;
-  border-color: rgba(0, 0, 0, 0.9) transparent transparent transparent;
-}
-
-.phone-bubble-btn:hover .phone-tooltip {
-  visibility: visible;
-  opacity: 1;
-  bottom: 75px; /* Lekka animacja w górę */
-}
-
-.savings-card {
-  margin-top: 40px;
+  padding-bottom: 30px;
+  font-size: 2rem;
 }
