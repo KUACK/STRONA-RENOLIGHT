@@ -197,6 +197,10 @@ function calculateSavings() {
     profit5Years.toLocaleString("pl-PL", { maximumFractionDigits: 2 }) + " PLN";
 
   resultsContainer.classList.remove("hidden");
+
+  requestAnimationFrame(() => {
+    pulseResultsBox();
+  });
 }
 
 function showError(message) {
@@ -213,6 +217,15 @@ document
       calculatorForm.dispatchEvent(new Event("submit"));
     }
   });
+/* ANIMACJA PULSOWANIA WYNIKÓW PO KALKULACJI */
+function pulseResultsBox() {
+  const box = document.querySelector("#resultsContainer .results");
+  if (!box) return;
+
+  box.classList.remove("is-pulsing");
+  void box.offsetWidth; // wymusza reflow, żeby animacja mogła odpalić ponownie
+  box.classList.add("is-pulsing");
+}
 
 /* SLIDER */
 document.addEventListener("DOMContentLoaded", () => {
@@ -313,3 +326,84 @@ document.addEventListener("DOMContentLoaded", () => {
   render();
   window.addEventListener("resize", render);
 });
+
+/* SKAKANIE STRZALKAMI */
+
+(() => {
+  // Zbierz wszystkie sekcje (tylko te, które faktycznie mają wysokość)
+  const getSections = () =>
+    Array.from(document.querySelectorAll("section")).filter(
+      (s) => s.offsetHeight > 0
+    );
+
+  const isTyping = () => {
+    const el = document.activeElement;
+    if (!el) return false;
+    const tag = el.tagName?.toLowerCase();
+    return (
+      tag === "input" ||
+      tag === "textarea" ||
+      tag === "select" ||
+      el.isContentEditable
+    );
+  };
+
+  const headerOffset = () => {
+    const header = document.querySelector("header");
+    return header ? header.getBoundingClientRect().height : 0;
+  };
+
+  const currentIndex = (sections) => {
+    const y = window.scrollY + headerOffset() + 8; // 8px bufor
+    let idx = 0;
+
+    for (let i = 0; i < sections.length; i++) {
+      const top = sections[i].offsetTop;
+      if (top <= y) idx = i;
+      else break;
+    }
+    return idx;
+  };
+
+  const scrollToSection = (section) => {
+    if (!section) return;
+
+    // Dokładnie od początku sekcji (bez kompensacji headera)
+    const y = section.offsetTop;
+    window.scrollTo({ top: y, behavior: "smooth" });
+  };
+
+  window.addEventListener(
+    "keydown",
+    (e) => {
+      // Nie przeszkadzaj w formularzu i nie przechwytuj skrótów typu Ctrl/Alt/Meta
+      if (isTyping()) return;
+      if (e.ctrlKey || e.altKey || e.metaKey) return;
+
+      const sections = getSections();
+      if (sections.length === 0) return;
+
+      const key = e.key;
+
+      const goNext = key === "ArrowDown" || key === "PageDown";
+      const goPrev = key === "ArrowUp" || key === "PageUp";
+      const goHome = key === "Home";
+      const goEnd = key === "End";
+
+      if (!(goNext || goPrev || goHome || goEnd)) return;
+
+      e.preventDefault();
+
+      const idx = currentIndex(sections);
+
+      if (goHome) return scrollToSection(sections[0]);
+      if (goEnd) return scrollToSection(sections[sections.length - 1]);
+
+      const nextIdx = goNext
+        ? Math.min(sections.length - 1, idx + 1)
+        : Math.max(0, idx - 1);
+      scrollToSection(sections[nextIdx]);
+    },
+    { passive: false }
+  );
+})();

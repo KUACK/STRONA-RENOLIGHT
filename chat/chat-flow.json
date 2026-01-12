@@ -1,0 +1,280 @@
+{
+  "startNodeId": "START",
+  "nodes": {
+    "START": {
+      "type": "choices",
+      "text": "Cześć! W czym mogę ci pomóc?",
+      "options": [
+        { "label": "Chcę wycenę / audyt", "value": "A", "next": "A_ROLE" },
+        {
+          "label": "Mam pytania",
+          "value": "B",
+          "next": "B_MENU"
+        },
+        {
+          "label": "Interesuje mnie serwis / gwarancja",
+          "value": "C",
+          "next": "C_MENU"
+        }
+      ]
+    },
+
+    "A_ROLE": {
+      "type": "choices",
+      "text": "Kim jesteś w tej sprawie?",
+      "questionKey": "role",
+      "options": [
+        {
+          "label": "Właściciel / zarządca",
+          "value": "Właściciel / zarządca",
+          "next": "A_SCALE"
+        },
+        { "label": "Najemca", "value": "Najemca", "next": "A_SCALE" },
+        {
+          "label": "Administracja / Office Manager",
+          "value": "Administracja / Office Manager",
+          "next": "A_SCALE"
+        },
+        {
+          "label": "Facility Manager / techniczny",
+          "value": "Facility Manager / techniczny",
+          "next": "A_SCALE"
+        },
+        { "label": "Inne", "value": "Inne", "next": "A_SCALE" },
+        {
+          "label": "Nie wiem / nie chcę na razie odpowiadać",
+          "value": "unknown",
+          "next": "A_SCALE"
+        }
+      ]
+    },
+
+    "A_SCALE": {
+      "type": "choices",
+      "text": "Jak duży jest temat?",
+      "questionKey": "scale",
+      "options": [
+        {
+          "label": "Do 30 opraw",
+          "value": "Do 30 opraw",
+          "next": "A_TIMELINE"
+        },
+        {
+          "label": "31–100 opraw",
+          "value": "31–100 opraw",
+          "next": "A_TIMELINE"
+        },
+        {
+          "label": "101–300 opraw",
+          "value": "101–300 opraw",
+          "next": "A_TIMELINE"
+        },
+        { "label": "300+ opraw", "value": "300+ opraw", "next": "A_TIMELINE" },
+        {
+          "label": "Nie wiem / nie chcę na razie odpowiadać",
+          "value": "unknown",
+          "next": "A_TIMELINE"
+        }
+      ]
+    },
+
+    "A_TIMELINE": {
+      "type": "choices",
+      "text": "Kiedy chcesz to zrobić?",
+      "questionKey": "timeline",
+      "options": [
+        { "label": "0–30 dni", "value": "0–30 dni", "next": "A_CITY" },
+        { "label": "1–3 miesiące", "value": "1–3 miesiące", "next": "A_CITY" },
+        { "label": "3–6 miesięcy", "value": "3–6 miesięcy", "next": "A_CITY" },
+        {
+          "label": "Później / rozeznanie",
+          "value": "Później / rozeznanie",
+          "next": "A_CITY"
+        },
+        {
+          "label": "Nie wiem / nie chcę na razie odpowiadać",
+          "value": "unknown",
+          "next": "A_CITY"
+        }
+      ]
+    },
+
+    "A_CITY": {
+      "type": "input",
+      "text": "W jakim mieście jest biuro?",
+      "questionKey": "city",
+      "placeholder": "Np. Warszawa",
+      "allowSkip": true,
+      "skipLabel": "Nie wiem / nie chcę na razie odpowiadać",
+      "next": "LEAD_FORM"
+    },
+
+    "B_MENU": {
+      "type": "choices",
+      "text": "Jasne — wybierz temat, a podam konkretną odpowiedź.",
+      "options": [
+        {
+          "label": "Czy da się zrobić wymianę bez zakłócania pracy biura?",
+          "value": "B1",
+          "next": "B_ANSWER_B1"
+        },
+        {
+          "label": "Ile trwa montaż i co z dostępem?",
+          "value": "B2",
+          "next": "B_ANSWER_B2"
+        },
+        {
+          "label": "Gwarancja / awarie / serwis",
+          "value": "B3",
+          "next": "B_ANSWER_B3"
+        },
+        {
+          "label": "Czy trzeba wymieniać całe oprawy czy tylko źródła?",
+          "value": "B4",
+          "next": "B_ANSWER_B4"
+        },
+        {
+          "label": "Normy i komfort (migotanie, olśnienie)",
+          "value": "B5",
+          "next": "B_ANSWER_B5"
+        },
+        {
+          "label": "Utylizacja świetlówek / odpady",
+          "value": "B6",
+          "next": "B_ANSWER_B6"
+        },
+        {
+          "label": "Faktura, formalności",
+          "value": "B7",
+          "next": "B_ANSWER_B7"
+        },
+        {
+          "label": "Inne pytanie (napiszę)",
+          "value": "B_OTHER",
+          "next": "LEAD_FORM"
+        },
+        { "label": "Wróć na start", "value": "BACK_TO_START", "next": "START" }
+      ]
+    },
+
+    "B_ANSWER_B1": {
+      "type": "message",
+      "text": "Tak — zwykle planuje się prace etapami (strefami) i poza godzinami największego ruchu. Montaż można zorganizować tak, żeby nie wyłączać całego biura naraz. Jeśli powiesz, ile jest stref i czy są sale konferencyjne, dopasujemy harmonogram.",
+      "next": "B_SUFFICIENT"
+    },
+    "B_ANSWER_B2": {
+      "type": "message",
+      "text": "Czas zależy od liczby opraw i dostępu do sufitu (podwieszany/otwarty). Najczęściej prace dzieli się na krótkie wejścia, żeby minimalizować przestoje. Wstępnie oszacujemy czas po liczbie opraw i informacji o suficie.",
+      "next": "B_SUFFICIENT"
+    },
+    "B_ANSWER_B3": {
+      "type": "message",
+      "text": "Gwarancja zależy od zastosowanych opraw i ustaleń w ofercie, ale standardem jest jasna procedura zgłoszeń i czas reakcji. W razie awarii ważne są: termin, dostęp do strefy i czy potrzebna jest zwyżka/drabina.",
+      "next": "B_SUFFICIENT"
+    },
+    "B_ANSWER_B4": {
+      "type": "message",
+      "text": "To zależy od typu obecnych opraw i celu (oszczędność energii vs. jakość światła). Czasem da się zrobić modernizację częściową, ale przy starszych rozwiązaniach pełna wymiana bywa pewniejsza i lepiej spełnia parametry. Po krótkim audycie zwykle da się wskazać najlepszą opcję.",
+      "next": "B_SUFFICIENT"
+    },
+    "B_ANSWER_B5": {
+      "type": "message",
+      "text": "W biurach liczy się nie tylko jasność, ale też komfort: ograniczenie olśnienia i stabilne światło bez efektu męczenia wzroku. Da się dobrać oprawy i rozmieszczenie tak, żeby warunki pracy były lepsze, a nie tylko ‘jaśniej’. Jeśli powiesz, czy to open space czy gabinety, dopasujemy kierunek rekomendacji.",
+      "next": "B_SUFFICIENT"
+    },
+    "B_ANSWER_B6": {
+      "type": "message",
+      "text": "Świetlówki i część osprzętu traktuje się jako odpady wymagające właściwego postępowania. Standardowo organizuje się demontaż i przekazanie odpadów zgodnie z wymaganiami, a po stronie klienta zostaje minimum formalności. Doprecyzujemy to w ofercie po informacji, co jest teraz zamontowane.",
+      "next": "B_SUFFICIENT"
+    },
+    "B_ANSWER_B7": {
+      "type": "message",
+      "text": "Tak — normalnie wystawiana jest faktura i można ująć temat jako usługę modernizacji/montażu z materiałem. Jeśli potrzebujesz oferty do akceptacji wewnętrznej, przygotujemy ją w formie czytelnej (zakres, terminy, warianty). Napisz proszę miasto i skalę, a dopasujemy format.",
+      "next": "B_SUFFICIENT"
+    },
+
+    "B_SUFFICIENT": {
+      "type": "choices",
+      "text": "Czy te informacje są wystarczające?",
+      "options": [
+        {
+          "label": "Tak, chciałbym zostawić dane do kontaktu",
+          "value": "yes_leave_contact",
+          "next": "A_ROLE"
+        },
+        {
+          "label": "Nie, mam inne pytanie",
+          "value": "no_more_questions",
+          "next": "B_MENU"
+        },
+        {
+          "label": "Chcę zostawić pytanie e-mail",
+          "value": "leave_question_email",
+          "next": "LEAD_FORM"
+        }
+      ]
+    },
+
+    "B_OTHER_QUESTION": {
+      "type": "input",
+      "text": "Napisz pytanie jednym zdaniem (odpowiemy mailowo).",
+      "questionKey": "free_text_question",
+      "placeholder": "Wpisz pytanie…",
+      "allowSkip": false,
+      "next": "LEAD_FORM"
+    },
+
+    "C_MENU": {
+      "type": "choices",
+      "text": "Wybierz temat serwisu/gwarancji:",
+      "options": [
+        {
+          "label": "Na co jest gwarancja i na ile lat?",
+          "value": "C1",
+          "next": "C_ANSWER_C1"
+        },
+        {
+          "label": "Czas reakcji na awarię",
+          "value": "C2",
+          "next": "C_ANSWER_C2"
+        },
+        {
+          "label": "Czy macie stały serwis w całej Polsce?",
+          "value": "C3",
+          "next": "C_ANSWER_C3"
+        }
+      ]
+    },
+
+    "C_ANSWER_C1": {
+      "type": "message",
+      "text": "Gwarancja obejmuje elementy wskazane w ofercie i zależy od producenta oraz wariantu opraw. Najważniejsze: jasno opisany zakres (co obejmuje, czego nie) i sposób zgłoszenia. Jeśli podasz skalę i miasto, podpowiemy najbardziej sensowny wariant dla Twojego biura.",
+      "next": "B_SUFFICIENT"
+    },
+    "C_ANSWER_C2": {
+      "type": "message",
+      "text": "Czas reakcji ustala się zwykle w zależności od priorytetu (np. krytyczne strefy vs. reszta). Da się wprowadzić model ‘pilne/standard’ lub stałą opiekę serwisową. Dopasujemy to do tego, jak krytyczne jest oświetlenie dla pracy biura.",
+      "next": "B_SUFFICIENT"
+    },
+    "C_ANSWER_C3": {
+      "type": "message",
+      "text": "Możemy obsługiwać tematy w różnych lokalizacjach, ale szczegóły zależą od miasta i skali (to wpływa na logistykę i czas reakcji). Najszybciej będzie, jeśli zostawisz miasto i kontakt — wrócimy z konkretną informacją o możliwościach serwisu.",
+      "next": "B_SUFFICIENT"
+    },
+
+    "LEAD_FORM": {
+      "type": "lead_form",
+      "text": "Gdzie wysłać wstępną wycenę / propozycję audytu?",
+      "privacyLink": "#polityka-prywatnosci",
+      "privacyAdmin": "Asknet sp. z o.o.",
+      "consentLabel": "Zgadzam się na kontakt w sprawie wyceny.",
+      "next": "GOODBYE"
+    },
+
+    "GOODBYE": {
+      "type": "message",
+      "text": "Dziękuję! Otrzymaliśmy Twoje zgłoszenie — odezwiemy się wkrótce, żeby doprecyzować szczegóły i przygotować propozycję.",
+      "next": null
+    }
+  }
+}

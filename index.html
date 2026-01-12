@@ -1,497 +1,410 @@
 <!DOCTYPE html>
 <html lang="pl">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tańsze Światło - Renowacja Oświetlenia w Biurach</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
 
-  <body>
-    <!-- HEADER -->
-    <header>
-      <div class="header-container">
-        <a href="#" class="logo">💡 Tańsze Światło</a>
-        <nav>
-          <a href="#kalkulator">Kalkulator</a>
-          <a href="#portfolio">Portfolio</a>
-          <a href="#kontakt">Kontakt</a>
-        </nav>
-      </div>
-    </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tańsze Światło - Renowacja Oświetlenia w Biurach</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
 
-    <!-- HERO SECTION -->
-    <section class="hero">
-      <div class="hero-container">
-        <div class="hero-content">
-          <h1>Renowacja Oświetlenia w Biurach</h1>
-          <p>Zmniejsz koszty energii, zwiększ efektywność i komfort pracy</p>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="header-container">
+      <a href="#" class="logo">💡 Tańsze Światło</a>
+      <nav>
+        <a href="#kalkulator">Kalkulator</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+    </div>
+  </header>
 
-          <div class="hero-quick-calc">
-            <label for="heroNumberOfFixtures">Liczba opraw do wymiany:</label>
-            <input
-              type="number"
-              id="heroNumberOfFixtures"
-              placeholder="np. 60"
-              min="1"
-              value="60"
-            />
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-container">
+      <div class="hero-content">
+        <h1>Renowacja Oświetlenia w Biurach</h1>
+        <p>Zmniejsz koszty energii, zwiększ efektywność i komfort pracy</p>
 
-            <div class="cta-buttons-group" style="margin-top: 0rem">
-              <a href="#quick-savings" class="cta-section-btn"
-                >Zobacz Oszczędności</a
-              >
-            </div>
+        <div class="hero-quick-calc">
+          <label for="heroNumberOfFixtures">Liczba opraw do wymiany:</label>
+          <input type="number" id="heroNumberOfFixtures" placeholder="np. 60" min="1" value="60" />
+
+          <div class="cta-buttons-group" style="margin-top: 0rem">
+            <a href="#quick-savings" class="cta-section-btn">Zobacz Oszczędności</a>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- QUICK SAVINGS PREVIEW SECTION -->
-    <section class="quick-savings-section" id="quick-savings">
-      <div class="container">
-        <div class="qs-carousel">
-          <button
-            class="qs-arrow qs-arrow--left qs-cloud"
-            type="button"
-            aria-label="Jestem Właścicielem. Pokaż moje korzyści"
-          >
-            Jestem Właścicielem. Pokaż moje korzyści
-          </button>
+  <!-- QUICK SAVINGS PREVIEW SECTION -->
+  <section class="quick-savings-section" id="quick-savings">
+    <div class="container">
+      <div class="qs-carousel">
+        <button class="qs-arrow qs-arrow--left qs-cloud" type="button"
+          aria-label="Jestem Właścicielem. Pokaż moje korzyści">
+          Jestem Właścicielem. Pokaż moje korzyści
+        </button>
 
-          <div class="qs-track" id="qsTrack">
-            <!-- LEWY -->
-            <div class="savings-card" data-slide="left">
-              <h2>Korzyści dla Właściciela</h2>
-              <ul class="qs-benefits">
-                <li>Wyższa atrakcyjność oferty najmu.</li>
-                <li>
-                  Możliwość uzasadnienia wyższej stawki czynszu dzięki wyższemu
-                  standardowi.
-                </li>
-                <li>Mniej zgłoszeń i awarii = niższe koszty serwisu.</li>
-                <li>Wzrost wartości i prestiżu nieruchomości.</li>
-                <li class="leasing">
-                  Możliwość leasingu oświetlenia i wygenerowanie dodatkowych
-                  kosztów.
-                </li>
-              </ul>
-            </div>
-
-            <!-- ŚRODKOWY (TEN, KTÓRY MASZ TERAZ) -->
-            <div
-              class="savings-card savings-card--center"
-              data-slide="center"
-              id="qsCenterSlide"
-            >
-              <h2>Twoje Oszczędności</h2>
-              <div class="savings-display">
-                <span class="savings-value" id="quickSavingsValue">0 PLN</span>
-                <span class="savings-value-PLN"> ROCZNIE</span>
-              </div>
-
-              <div class="qs-preview-metrics">
-                <div class="qs-metric qs-label--muted">
-                  <span class="qs-metric__label">Koszt wymiany:</span>
-                  <span class="qs-metric__value" id="quickReplacementCost"
-                    >0 PLN</span
-                  >
-                </div>
-                <div class="quick-roi">
-                  <div class="qs-metric">
-                    <span class="qs-metric__value" id="quickROI">-</span>
-                    <span class="qs-metric__label">Zwrot po</span>
-                  </div>
-                </div>
-
-                <div class="qs-metric qs-label--bold">
-                  <span class="qs-metric__label">Zysk po 5 latach:</span>
-                  <span class="qs-metric__value" id="quickProfit5Years"
-                    >0 PLN</span
-                  >
-                </div>
-              </div>
-
-              <a href="#kalkulator" class="savings-cta">Jak to obliczamy? →</a>
-            </div>
-
-            <!-- PRAWY -->
-            <div class="savings-card" data-slide="right">
-              <h2>Korzyści dla Najemcy</h2>
-              <ul class="qs-benefits">
-                <li>
-                  Niższe miesięczne koszty użytkowania oraz przewidywalność
-                  wydatków.
-                </li>
-                <li>Wyższa produktywność oraz komfort na co dzień.</li>
-                <li>
-                  Mniej stresu związanego z usterkami i przerwami w działaniu.
-                </li>
-                <li>Lepsze warunki do pracy i odpoczynku.</li>
-                <li class="leasing">
-                  Oszczędność już w pierwszym roku użytkowania!
-                </li>
-              </ul>
-            </div>
+        <div class="qs-track" id="qsTrack">
+          <!-- LEWY -->
+          <div class="savings-card" data-slide="left">
+            <h2>Korzyści dla Właściciela</h2>
+            <ul class="qs-benefits">
+              <li>Wyższa atrakcyjność oferty najmu.</li>
+              <li>
+                Możliwość uzasadnienia wyższej stawki czynszu dzięki wyższemu
+                standardowi.
+              </li>
+              <li>Mniej zgłoszeń i awarii = niższe koszty serwisu.</li>
+              <li>Wzrost wartości i prestiżu nieruchomości.</li>
+              <li class="leasing">
+                Możliwość leasingu oświetlenia i wygenerowanie dodatkowych
+                kosztów.
+              </li>
+            </ul>
           </div>
 
-          <button
-            class="qs-arrow qs-arrow--right qs-cloud"
-            type="button"
-            aria-label="Jestem Najemcą. Pokaż moje korzyści"
-          >
-            Jestem Najemcą.<br />
-            Pokaż moje korzyści
-          </button>
+          <!-- ŚRODKOWY (TEN, KTÓRY MASZ TERAZ) -->
+          <div class="savings-card savings-card--center" data-slide="center" id="qsCenterSlide">
+            <h2>Twoje Oszczędności</h2>
+            <div class="savings-display">
+              <span class="savings-value" id="quickSavingsValue">0 PLN</span>
+              <span class="savings-value-PLN"> ROCZNIE</span>
+            </div>
+
+            <div class="qs-preview-metrics">
+              <div class="qs-metric qs-label--muted">
+                <span class="qs-metric__label">Koszt wymiany:</span>
+                <span class="qs-metric__value" id="quickReplacementCost">0 PLN</span>
+              </div>
+              <div class="quick-roi">
+                <div class="qs-metric">
+                  <span class="qs-metric__value" id="quickROI">-</span>
+                  <span class="qs-metric__label">Zwrot po</span>
+                </div>
+              </div>
+
+              <div class="qs-metric qs-label--bold">
+                <span class="qs-metric__label">Zysk po 5 latach:</span>
+                <span class="qs-metric__value" id="quickProfit5Years">0 PLN</span>
+              </div>
+            </div>
+
+            <a href="#kalkulator" class="savings-cta">Jak to obliczamy? →</a>
+          </div>
+
+          <!-- PRAWY -->
+          <div class="savings-card" data-slide="right">
+            <h2>Korzyści dla Najemcy</h2>
+            <ul class="qs-benefits">
+              <li>
+                Niższe miesięczne koszty użytkowania oraz przewidywalność
+                wydatków.
+              </li>
+              <li>Wyższa produktywność oraz komfort na co dzień.</li>
+              <li>
+                Mniej stresu związanego z usterkami i przerwami w działaniu.
+              </li>
+              <li>Lepsze warunki do pracy i odpoczynku.</li>
+              <li class="leasing">
+                Oszczędność już w pierwszym roku użytkowania!
+              </li>
+            </ul>
+          </div>
         </div>
+
+        <button class="qs-arrow qs-arrow--right qs-cloud" type="button"
+          aria-label="Jestem Najemcą. Pokaż moje korzyści">
+          Jestem Najemcą.<br />
+          Pokaż moje korzyści
+        </button>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- CALCULATOR SECTION -->
-    <section class="calculator-section" id="kalkulator">
-      <div class="container">
-        <h2 class="section-title">Kalkulator Oszczędności</h2>
+  <!-- CALCULATOR SECTION -->
+  <section class="calculator-section" id="kalkulator">
+    <div class="container">
+      <h2 class="section-title">Kalkulator Oszczędności</h2>
 
-        <div class="calculator-wrapper">
-          <!-- FORM -->
-          <div class="calculator-form-card">
-            <form id="calculatorForm">
-              <div class="form-group">
-                <label for="numberOfFixtures"
-                  >Liczba opraw do wymiany (sufit podwieszany)</label
-                >
-                <input
-                  type="number"
-                  id="numberOfFixtures"
-                  placeholder="np. 60"
-                  min="1"
-                  value="60"
-                  required
-                />
-              </div>
+      <div class="calculator-wrapper">
+        <!-- FORM -->
+        <div class="calculator-form-card">
+          <form id="calculatorForm">
+            <div class="form-group">
+              <label for="numberOfFixtures">Liczba opraw do wymiany (sufit podwieszany)</label>
+              <input type="number" id="numberOfFixtures" placeholder="np. 60" min="1" value="60" required />
+            </div>
 
-              <div class="form-group">
-                <label for="wattageOld"
-                  >Moc obecnego oświetlenia (W) (np. 4×18W = 72W)</label
-                >
-                <input
-                  type="number"
-                  id="wattageOld"
-                  placeholder="np. 72"
-                  min="1"
-                  step="0.1"
-                  value="72"
-                  required
-                />
-              </div>
+            <div class="form-group">
+              <label for="wattageOld">Moc obecnego oświetlenia (W) (np. 4×18W = 72W)</label>
+              <input type="number" id="wattageOld" placeholder="np. 72" min="1" step="0.1" value="72" required />
+            </div>
 
-              <div class="form-group">
-                <label for="hoursPerDay">Godziny pracy dziennie</label>
-                <input
-                  type="number"
-                  id="hoursPerDay"
-                  placeholder="np. 12"
-                  min="1"
-                  max="24"
-                  value="12"
-                  required
-                />
-              </div>
+            <div class="form-group">
+              <label for="hoursPerDay">Godziny pracy dziennie</label>
+              <input type="number" id="hoursPerDay" placeholder="np. 12" min="1" max="24" value="12" required />
+            </div>
 
-              <div class="form-group">
-                <label for="costPerKwh">Koszt za 1 kWh w PLN</label>
-                <input
-                  type="number"
-                  id="costPerKwh"
-                  placeholder="np. 1.11"
-                  min="0"
-                  step="0.01"
-                  value="1.11"
-                  required
-                />
-              </div>
+            <div class="form-group">
+              <label for="costPerKwh">Koszt za 1 kWh w PLN</label>
+              <input type="number" id="costPerKwh" placeholder="np. 1.11" min="0" step="0.01" value="1.11" required />
+            </div>
 
-              <div class="form-group">
-                <label for="numberOfSensors"
-                  >Planowana ilość czujników zmierzchu/ruchu</label
-                >
-                <input
-                  type="number"
-                  id="numberOfSensors"
-                  placeholder="np. 10"
-                  min="0"
-                  value="0"
-                />
-              </div>
+            <div class="form-group">
+              <label for="numberOfSensors">Planowana ilość czujników zmierzchu/ruchu</label>
+              <input type="number" id="numberOfSensors" placeholder="np. 10" min="0" value="0" />
+            </div>
 
-              <div class="form-group">
-                <label for="sensorControlledFixtures"
-                  >Ilość opraw reagujących na czujniki</label
-                >
-                <input
-                  type="number"
-                  id="sensorControlledFixtures"
-                  placeholder="np. 20"
-                  min="0"
-                  value="0"
-                />
-              </div>
-              <div class="form-group">
-                <label for="fixtureType">Typ nowej oprawy</label>
-                <select id="fixtureType" required>
-                  <option value="149">Standard (GTV) - 149 PLN/szt</option>
-                  <option value="399">
-                    Plus (Lena Lighting) - 399 PLN/szt
-                  </option>
-                  <option value="499">Premium (Phillips) - 499 PLN/szt</option>
-                </select>
-              </div>
+            <div class="form-group">
+              <label for="sensorControlledFixtures">Ilość opraw reagujących na czujniki</label>
+              <input type="number" id="sensorControlledFixtures" placeholder="np. 20" min="0" value="0" />
+            </div>
+            <div class="form-group">
+              <label for="fixtureType">Typ nowej oprawy</label>
+              <select id="fixtureType" required>
+                <option value="149">Standard (GTV) - 149 PLN/szt</option>
+                <option value="399">
+                  Plus (Lena Lighting) - 399 PLN/szt
+                </option>
+                <option value="499">Premium (Phillips) - 499 PLN/szt</option>
+              </select>
+            </div>
 
-              <button type="submit">Oblicz Oszczędności</button>
-            </form>
+            <button type="submit">Oblicz Oszczędności</button>
+          </form>
 
-            <div id="errorMessage" class="error-message hidden"></div>
-          </div>
+          <div id="errorMessage" class="error-message hidden"></div>
+        </div>
 
-          <!-- RESULTS -->
-          <div id="resultsContainer" class="hidden">
-            <div class="results">
-              <h3>Wyniki Kalkulacji</h3>
+        <!-- RESULTS -->
+        <div id="resultsContainer" class="hidden">
+          <div class="results">
+            <h3>Wyniki Kalkulacji</h3>
 
-              <!-- 1) Roczna oszczędność -->
-              <div class="result-row highlight">
-                <span class="result-label-main">Roczna oszczędność</span>
-                <span class="result-value-main" id="resultYearlySavings"
-                  >-</span
-                >
-              </div>
+            <!-- 1) Roczna oszczędność -->
+            <div class="result-row highlight">
+              <span class="result-label-main">Roczna oszczędność</span>
+              <span class="result-value-main" id="resultYearlySavings">-</span>
+            </div>
 
-              <!-- 2) Koszty wymiany -->
-              <div class="result-row">
-                <span class="result-label">Koszty wymiany</span>
-                <span class="result-value" id="resultReplacementCost">-</span>
-              </div>
+            <!-- 2) Koszty wymiany -->
+            <div class="result-row">
+              <span class="result-label">Koszty wymiany</span>
+              <span class="result-value" id="resultReplacementCost">-</span>
+            </div>
 
-              <!-- 3) Zwrot po (xx czasu) -->
-              <div class="roi-box">
-                <div class="roi-value" id="resultROI">-</div>
-                <div class="roi-label">Zwrot po</div>
-              </div>
+            <!-- 3) Zwrot po (xx czasu) -->
+            <div class="roi-box">
+              <div class="roi-value" id="resultROI">-</div>
+              <div class="roi-label">Zwrot po</div>
+            </div>
 
-              <!-- 4) Zysk po 5 latach -->
-              <div class="result-row">
-                <span class="result-label">Zysk po 5 latach wyniesie</span>
-                <span class="result-value" id="resultProfit5Years">-</span>
-              </div>
+            <!-- 4) Zysk po 5 latach -->
+            <div class="result-row">
+              <span class="result-label">Zysk po 5 latach wyniesie</span>
+              <span class="result-value" id="resultProfit5Years">-</span>
+            </div>
 
-              <div class="results-compare">
-                <div class="compare-col">
-                  <div class="compare-title">Obecne</div>
+            <div class="results-compare">
+              <div class="compare-col">
+                <div class="compare-title">Obecne</div>
 
-                  <div class="compare-row">
-                    <span class="compare-label">Zużycie</span>
-                    <span class="compare-value" id="resultOldConsumption"
-                      >-</span
-                    >
-                  </div>
-
-                  <div class="compare-row">
-                    <span class="compare-label">Koszt</span>
-                    <span class="compare-value" id="resultOldCost">-</span>
-                  </div>
+                <div class="compare-row">
+                  <span class="compare-label">Zużycie</span>
+                  <span class="compare-value" id="resultOldConsumption">-</span>
                 </div>
 
-                <div class="compare-col">
-                  <div class="compare-title">Nowe</div>
+                <div class="compare-row">
+                  <span class="compare-label">Koszt</span>
+                  <span class="compare-value" id="resultOldCost">-</span>
+                </div>
+              </div>
 
-                  <div class="compare-row">
-                    <span class="compare-label">Zużycie</span>
-                    <span class="compare-value" id="resultNewConsumption"
-                      >-</span
-                    >
-                  </div>
+              <div class="compare-col">
+                <div class="compare-title">Nowe</div>
 
-                  <div class="compare-row">
-                    <span class="compare-label">Koszt</span>
-                    <span class="compare-value" id="resultNewCost">-</span>
-                  </div>
+                <div class="compare-row">
+                  <span class="compare-label">Zużycie</span>
+                  <span class="compare-value" id="resultNewConsumption">-</span>
+                </div>
+
+                <div class="compare-row">
+                  <span class="compare-label">Koszt</span>
+                  <span class="compare-value" id="resultNewCost">-</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- FAQ SECTION -->
-    <section class="faq-section" id="faq">
-      <div class="container">
-        <h2 class="section-title">Najczęściej Zadawane Pytania</h2>
-        <div class="faq-container">
-          <details class="faq-item">
-            <summary>
-              Czy proponowana cena za wymianę opraw jest gwarantowana?
-            </summary>
-            <p>Tak, jest to oficjalna cena wymiany opraw od sztuki.</p>
-          </details>
-          <details class="faq-item">
-            <summary>Czy na nowe oprawy obowiązuje gwarancja?</summary>
-            <p>
-              Tak, na instalowane oprawy obowiązuje x lat gwarancji producenta.
-            </p>
-          </details>
-          <details class="faq-item">
-            <summary>Jak długo trwa instalacja oświetlenia?</summary>
-            <p>
-              Zależnie od wielkości projektu, instalacja zazwyczaj trwa od 1 do
-              3 dni i jest przeprowadzana bez zakłóceń w codziennej pracy biura.
-            </p>
-          </details>
-          <details class="faq-item">
-            <summary>
-              Czy prace renowacyjne są prowadzone na terenie całej Polski?
-            </summary>
-            <p>Tak, nasza działalność obejmuje zakres całego kraju.</p>
-          </details>
-        </div>
+  <!-- FAQ SECTION -->
+  <section class="faq-section" id="faq">
+    <div class="container">
+      <h2 class="section-title">Najczęściej Zadawane Pytania</h2>
+      <div class="faq-container">
+        <details class="faq-item">
+          <summary>Czy proponowana cena za oprawę jest gwarantowana?</summary>
+          <p>Tak, jest to oficjalna cena wymiany opraw od sztuki.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Czy na nowe oprawy obowiązuje gwarancja?</summary>
+          <p>
+            Tak, na instalowane oprawy obowiązuje x lat gwarancji producenta.
+          </p>
+        </details>
+        <details class="faq-item">
+          <summary>Jak długo trwa instalacja oświetlenia?</summary>
+          <p>
+            Zależnie od wielkości projektu, instalacja zazwyczaj trwa od 1 do
+            3 dni i jest przeprowadzana bez zakłóceń w codziennej pracy biura.
+          </p>
+        </details>
+        <details class="faq-item">
+          <summary>
+            Czy prace renowacyjne są prowadzone na terenie całej Polski?
+          </summary>
+          <p>Tak, nasza działalność obejmuje zakres całego kraju.</p>
+        </details>
       </div>
-    </section>
+    </div>
+  </section>
+  <!-- PORTFOLIO SECTION -->
+  <section class="portfolio-section" id="portfolio">
+    <div class="container">
+      <h2 class="section-title">Nasze Realizacje</h2>
 
-    <!-- PORTFOLIO SECTION -->
-    <section class="portfolio-section" id="portfolio">
-      <div class="container">
-        <h2 class="section-title">Nasze Realizacje</h2>
-
-        <div class="portfolio-grid">
-          <div class="portfolio-item">
-            <div class="portfolio-image">[Zdjęcie biura 1]</div>
-            <div class="portfolio-content">
-              <h4>Biuro Technologiczne</h4>
-              <p>Renowacja 120 opraw LED, oszczędność 15 000 PLN/rok</p>
-            </div>
+      <div class="portfolio-grid">
+        <div class="portfolio-item">
+          <div class="portfolio-image">
+            <img src="images/biuro1.png" alt="Biuro technologiczne" loading="lazy">
           </div>
-
-          <div class="portfolio-item">
-            <div class="portfolio-image">[Zdjęcie biura 2]</div>
-            <div class="portfolio-content">
-              <h4>Centrum Biznesowe</h4>
-              <p>Kompleksna renowacja 85 opraw, ROI 9 miesięcy</p>
-            </div>
-          </div>
-
-          <div class="portfolio-item">
-            <div class="portfolio-image">[Zdjęcie biura 3]</div>
-            <div class="portfolio-content">
-              <h4>Kancelaria Prawnicza</h4>
-              <p>Instalacja 50 opraw LED, lepszy komfort wizualny</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- TESTIMONIALS SECTION -->
-    <section class="testimonials-section">
-      <div class="container">
-        <h2 class="section-title">Opinie Naszych Klientów</h2>
-
-        <div class="testimonials-grid">
-          <div class="testimonial">
-            <div class="testimonial-text">
-              "Profesjonalnie wykonana praca. Oszczędzamy prawie 10 000 PLN
-              rocznie. Polecamy!"
-            </div>
-            <div class="testimonial-author">Jan Kowalski</div>
-            <div class="testimonial-company">Director, TechCorp Poland</div>
-          </div>
-
-          <div class="testimonial">
-            <div class="testimonial-text">
-              "Od razu widać różnicę w jakości oświetlenia. Pracownicy są
-              bardziej produktywni."
-            </div>
-            <div class="testimonial-author">Maria Nowak</div>
-            <div class="testimonial-company">HR Manager, Consulting Plus</div>
-          </div>
-
-          <div class="testimonial">
-            <div class="testimonial-text">
-              "Szybka instalacja bez zakłóceń w pracy. Zwrot inwestycji w
-              niespełna roku."
-            </div>
-            <div class="testimonial-author">Piotr Lewandowski</div>
-            <div class="testimonial-company">Owner, Marketing Agency</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT SECTION -->
-    <section class="contact-section" id="kontakt">
-      <div class="container">
-        <h2>Gotów na Zmianę?</h2>
-        <p>Skontaktuj się z nami aby uzyskać wycenę dla Twojego biura</p>
-
-        <div class="contact-info">
-          <div class="contact-item">
-            <h4>📞 Telefon</h4>
-            <p>+48 61 646 00 46</p>
-          </div>
-          <div class="contact-item">
-            <h4>📧 Email</h4>
-            <p>oswietlenia@asknet.pl</p>
-          </div>
-          <div class="contact-item">
-            <h4>📍 Centrala</h4>
-            <p>Osiedle Piastowskie 19,</p>
-            <p>Poznań, Polska</p>
+          <div class="portfolio-content">
+            <h4>Biuro Technologiczne</h4>
+            <p>Renowacja 120 opraw LED, oszczędność 15 000 PLN/rok</p>
           </div>
         </div>
 
-        <a href="mailto:oswietlenia@asknet.pl" class="cta-button"
-          >Wyślij Zapytanie</a
-        >
+        <div class="portfolio-item">
+          <div class="portfolio-image">
+            <img src="images/biuro2.png" alt="Centrum biznesowe" loading="lazy">
+          </div>
+          <div class="portfolio-content">
+            <h4>Centrum Biznesowe</h4>
+            <p>Kompleksna renowacja 85 opraw, ROI 9 miesięcy</p>
+          </div>
+        </div>
+
+        <div class="portfolio-item">
+          <div class="portfolio-image">
+            <img src="images/biuro3.png" alt="Kancelaria prawnicza" loading="lazy">
+          </div>
+          <div class="portfolio-content">
+            <h4>Kancelaria Prawnicza</h4>
+            <p>Instalacja 50 opraw LED, lepszy komfort wizualny</p>
+          </div>
+        </div>
       </div>
-    </section>
-    <h2 class="oddzialy">NASZE ODDZIALY</h2>
+    </div>
+  </section>
+  <!-- TESTIMONIALS SECTION -->
+  <section class="testimonials-section">
+    <div class="container">
+      <h2 class="section-title">Opinie Naszych Klientów</h2>
+
+      <div class="testimonials-grid">
+        <div class="testimonial">
+          <div class="testimonial-text">
+            "Profesjonalnie wykonana praca. Oszczędzamy prawie 10 000 PLN
+            rocznie. Polecamy!"
+          </div>
+          <div class="testimonial-author">Jan Kowalski</div>
+          <div class="testimonial-company">Director, TechCorp Poland</div>
+        </div>
+
+        <div class="testimonial">
+          <div class="testimonial-text">
+            "Od razu widać różnicę w jakości oświetlenia. Pracownicy są
+            bardziej produktywni."
+          </div>
+          <div class="testimonial-author">Maria Nowak</div>
+          <div class="testimonial-company">HR Manager, Consulting Plus</div>
+        </div>
+
+        <div class="testimonial">
+          <div class="testimonial-text">
+            "Szybka instalacja bez zakłóceń w pracy. Zwrot inwestycji w
+            niespełna roku."
+          </div>
+          <div class="testimonial-author">Piotr Lewandowski</div>
+          <div class="testimonial-company">Owner, Marketing Agency</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section class="contact-section" id="kontakt">
+    <div class="container">
+      <h2>Gotów na Zmianę?</h2>
+      <p>Skontaktuj się z nami aby uzyskać wycenę dla Twojego biura</p>
+
+      <div class="contact-info">
+        <div class="contact-item">
+          <h4>📞 Telefon</h4>
+          <p>+48 61 646 00 46</p>
+        </div>
+        <div class="contact-item">
+          <h4>📧 Email</h4>
+          <p>oswietlenia@asknet.pl</p>
+        </div>
+        <div class="contact-item">
+          <h4>📍 Centrala</h4>
+          <p>Osiedle Piastowskie 19,</p>
+          <p>Poznań, Polska</p>
+        </div>
+      </div>
+
+      <a href="mailto:oswietlenia@asknet.pl" class="cta-button">Wyślij Zapytanie</a>
+    </div>
+  </section>
+  <section class="map-section">
+
+    <h2 class="oddzialy">NASZE ODDZIAŁY</h2>
     <div id="map"></div>
 
     <script src="map.js"></script>
 
-    <script
-      async
-      defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLzYK1GzhgBI5uxZg1HYWIbQgvE4Z1RRc&loading=async&callback=initMap&v=weekly&libraries=marker"
-    ></script>
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLzYK1GzhgBI5uxZg1HYWIbQgvE4Z1RRc&loading=async&callback=initMap&v=weekly&libraries=marker"></script>
+  </section>
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 Asknet. Wszelkie prawa zastrzeżone.</p>
+  </footer>
 
-    <!-- FOOTER -->
-    <footer>
-      <p>&copy; 2025 Asknet. Wszelkie prawa zastrzeżone.</p>
-    </footer>
+  <!-- CHAT WIDGET -->
+  <div class="chat-widget">
+    <button class="chat-bubble-btn" id="chatBubbleBtn">
+      <img src="ikony/message-circle-dots-svgrepo-com.svg" alt="Chat" style="width: 70px; height: 70px" />
+    </button>
+  </div>
+  <script type="module" src="./chat/chat.js"></script>
 
-    <!-- CHAT WIDGET -->
-    <div class="chat-widget">
-      <button class="chat-bubble-btn" id="chatBubbleBtn">
-        <img
-          src="ikony/message-circle-dots-svgrepo-com.svg"
-          alt="Chat"
-          style="width: 70px; height: 70px"
-        />
-      </button>
-    </div>
+  <div class="phone-widget">
+    <a href="tel:+48616460046" class="phone-bubble-btn">
+      <img src="ikony/phone-svgrepo-com.svg" alt="Phone" style="width: 70px; height: 70px" />
+      <span class="phone-tooltip">Bezpośredni kontakt? Zadzwoń do nas: +48 61 646 00 46</span>
+    </a>
+  </div>
+  <script src="main.js" defer></script>
+</body>
 
-    <div class="phone-widget">
-      <a href="tel:+48616460046" class="phone-bubble-btn">
-        <img
-          src="ikony/phone-svgrepo-com.svg"
-          alt="Phone"
-          style="width: 70px; height: 70px"
-        />
-        <span class="phone-tooltip"
-          >Bezpośredni kontakt? Zadzwoń do nas: +48 61 646 00 46</span
-        >
-      </a>
-    </div>
-    <script src="main.js" defer></script>
-  </body>
 </html>
