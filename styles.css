@@ -1297,6 +1297,7 @@ button:hover,
     transform: none;
     width: 100%;
     max-width: none;
+    font-size: 0.9rem;
   }
 
   /* Wyłącz “dodatkowe” paddingi robione pod strzałki */
