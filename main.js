@@ -103,6 +103,22 @@ function updateQuickSavings() {
 // Initial update
 updateQuickSavings();
 
+function scrollToResultsIfMobile() {
+  if (!window.matchMedia("(max-width: 768px)").matches) return;
+
+  const el = document.getElementById("resultsContainer");
+  if (!el) return;
+
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  el.scrollIntoView({
+    behavior: prefersReducedMotion ? "auto" : "smooth",
+    block: "start",
+  });
+}
+
 function calculateSavings() {
   // INPUT
   const numberOfFixtures = parseFloat(
@@ -200,6 +216,7 @@ function calculateSavings() {
 
   requestAnimationFrame(() => {
     pulseResultsBox();
+    scrollToResultsIfMobile();
   });
 }
 
@@ -354,7 +371,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const currentIndex = (sections) => {
-    const y = window.scrollY + headerOffset() + 8; // 8px bufor
+    const y = window.scrollY + 8; // mały bufor, żeby nie skakało na granicy
     let idx = 0;
 
     for (let i = 0; i < sections.length; i++) {

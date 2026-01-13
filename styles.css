@@ -103,7 +103,7 @@ nav a:hover {
 }
 .hero {
   background: linear-gradient(rgba(0, 0, 0, 0.259), rgba(0, 0, 0, 0.057)),
-    url(images/Office1.jpeg) no-repeat center center/cover;
+    url(images/Office5.png) no-repeat center center/cover;
   background-color: #222;
   color: white;
   padding: 0 2rem;
@@ -125,7 +125,7 @@ nav a:hover {
   color: #ffffff;
   letter-spacing: 3px;
   font-weight: 800;
-  text-shadow: 0 5px 12px rgba(0, 0, 0, 0.6);
+  text-shadow: 0 5px 30px rgb(0, 0, 0);
 }
 .hero p {
   font-size: 1.2rem;
@@ -135,7 +135,7 @@ nav a:hover {
   margin-left: auto;
   margin-right: auto;
   opacity: 0.9;
-  text-shadow: 0 5px 12px rgba(0, 0, 0, 0.6);
+  text-shadow: 0 5px 12px rgb(0, 0, 0);
 }
 .quick-savings-section,
 .calculator-section,
@@ -227,21 +227,7 @@ nav a:hover {
   color: var(--color-primary);
   margin-bottom: 0rem;
 }
-.form-group input[type="number"],
-.form-group input[type="text"],
-.form-group select,
-input[type="number"],
-input[type="text"] {
-  width: 100%;
-  padding: 0.9rem;
-  border: 1px solid #ddd;
-  background: white;
-  font-size: 1rem;
-  color: var(--color-primary);
-  transition: border-color 0.3s, box-shadow 0.3s;
-  border-radius: var(--radius-std);
-  font-family: "Open Sans", sans-serif;
-}
+
 .form-group input:focus,
 .form-group select:focus,
 input[type="number"]:focus,
@@ -288,6 +274,7 @@ input[type="text"]:focus {
   font-weight: 700;
   font-size: 1.1rem;
   font-family: "Montserrat", sans-serif;
+  text-align: right;
 }
 .result-row {
   display: flex;
@@ -675,6 +662,7 @@ footer {
   /*border: 2px solid #5b5b5bff;*/
   background-color: #f8f9fa;
   font-size: 1rem;
+  border: 1px solid #ddd;
   color: var(--color-primary);
   border-radius: 8px;
   font-family: "Open Sans", sans-serif;
@@ -762,7 +750,7 @@ footer {
 }
 .calculator-section {
   padding: 0px 2rem;
-  height: 100vh;
+
   padding-top: 150px;
 }
 .qs-arrow.qs-cloud {
@@ -834,6 +822,7 @@ footer {
   font-size: 0.8rem;
   letter-spacing: 1px;
   margin-bottom: 1rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.568);
 }
 .hero-quick-calc input {
   background: transparent;
@@ -1161,7 +1150,7 @@ button:hover,
   nav a {
     margin-left: 0;
     padding: 0.45rem 0.8rem;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
   }
 
   .logo {
@@ -1318,10 +1307,10 @@ button:hover,
   }
   .quick-savings-section #quickROI {
     font-size: 2.4rem;
-    padding: 0.5rem;
+    padding: 0.5rem 0.5rem 0 0.5rem;
   }
   .qs-benefits {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
   /* Zmniejsz typografię w środku (żeby nie dominowało ekranu) */
   .quick-savings-section .savings-value {
@@ -1368,10 +1357,30 @@ button:hover,
   /* Jeśli masz wariant BEM (z podkreśleniami) – to konkretnie pod Twój fragment HTML */
   .quick-savings-section .qs-metric__label {
     font-size: 0.95rem;
+    padding-bottom: 0.5rem;
   }
 
   .quick-savings-section .qs-metric__value {
     font-size: 1.25rem;
+  }
+  .form-group input[type="number"],
+  .form-group input[type="text"],
+  .form-group select {
+    padding: 0.5rem 0.6rem;
+  }
+  .compare-row:last-child {
+    padding: 0;
+  }
+  .compare-title {
+    margin-bottom: 0.1rem;
+    padding-bottom: 0.1rem;
+  }
+  .results h3 {
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.3rem;
+  }
+  .results.is-pulsing {
+    margin-top: 150px;
   }
 }
 
