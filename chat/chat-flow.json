@@ -159,7 +159,7 @@
 
     "B_ANSWER_B1": {
       "type": "message",
-      "text": "Tak — zwykle planuje się prace etapami (strefami) i poza godzinami największego ruchu. Montaż można zorganizować tak, żeby nie wyłączać całego biura naraz. Jeśli powiesz, ile jest stref i czy są sale konferencyjne, dopasujemy harmonogram.",
+      "text": "Tak — zwykle planuje się prace etapami (strefami) i poza godzinami największego ruchu. Montaż można zorganizować tak, żeby nie wyłączać całego biura naraz. Kiedy powiesz, ile jest stref i czy są sale konferencyjne, dopasujemy harmonogram.",
       "next": "B_SUFFICIENT"
     },
     "B_ANSWER_B2": {
@@ -179,7 +179,7 @@
     },
     "B_ANSWER_B5": {
       "type": "message",
-      "text": "W biurach liczy się nie tylko jasność, ale też komfort: ograniczenie olśnienia i stabilne światło bez efektu męczenia wzroku. Da się dobrać oprawy i rozmieszczenie tak, żeby warunki pracy były lepsze, a nie tylko ‘jaśniej’. Jeśli powiesz, czy to open space czy gabinety, dopasujemy kierunek rekomendacji.",
+      "text": "W biurach liczy się nie tylko jasność, ale też komfort: ograniczenie olśnienia i stabilne światło bez efektu męczenia wzroku. Da się dobrać oprawy i rozmieszczenie tak, żeby warunki pracy były lepsze, a nie tylko ‘jaśniejsze’.",
       "next": "B_SUFFICIENT"
     },
     "B_ANSWER_B6": {
@@ -189,7 +189,7 @@
     },
     "B_ANSWER_B7": {
       "type": "message",
-      "text": "Tak — normalnie wystawiana jest faktura i można ująć temat jako usługę modernizacji/montażu z materiałem. Jeśli potrzebujesz oferty do akceptacji wewnętrznej, przygotujemy ją w formie czytelnej (zakres, terminy, warianty). Napisz proszę miasto i skalę, a dopasujemy format.",
+      "text": "Tak — wystawiana jest faktura VAT i można ująć temat jako usługę modernizacji/montażu z materiałem. Jeśli potrzebujesz oferty do akceptacji wewnętrznej, zostaw nam swoje dane kontaktowe razem z informacjami o które pyta formularz, a my skontaktujemy się z tobą w sprawie oferty.",
       "next": "B_SUFFICIENT"
     },
 

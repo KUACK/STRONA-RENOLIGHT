@@ -3,8 +3,8 @@
 :root {
   --color-primary: #1f1f1f;
   --color-secondary: #ffffff;
-  --color-accent: #1e3a5f;
-  --color-accent-hover: #162c47;
+  --color-accent: #841d1d;
+  --color-accent-hover: #ae2929;
   --color-bg: #ffffff;
   --color-surface: #f9f9f9;
   --color-text: #3f3f3f;
@@ -286,7 +286,7 @@ input[type="text"]:focus {
 .result-label-main,
 .result-label {
   color: rgba(255, 255, 255, 0.85);
-  font-weight: 400;
+  font-weight: 700;
   font-size: 0.95rem;
 }
 .result-row.highlight {
@@ -529,14 +529,14 @@ footer {
   z-index: 9999;
 }
 .chat-bubble-btn {
-  background: var(--color-accent);
+  background: #2563eb;
   color: white;
   border: none;
   width: 120px;
   height: 120px;
   border-radius: 100%;
   cursor: pointer;
-  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -548,6 +548,7 @@ footer {
 .chat-bubble-btn:hover {
   transform: scale(1.1);
   box-shadow: 0 12px 32px rgba(102, 126, 234, 0.6);
+  background: #1d4ed8;
 }
 .phone-widget {
   position: fixed;
@@ -639,7 +640,7 @@ footer {
   left: 0;
   width: 100%;
   height: 6px;
-  background: linear-gradient(90deg, var(--color-accent), #2c5282);
+  background: linear-gradient(90deg, var(--color-accent), var(--color-accent));
 }
 .form-group label {
   display: block;
@@ -647,7 +648,7 @@ footer {
   text-transform: uppercase;
   letter-spacing: 1.2px;
   font-weight: 700;
-  color: var(--color-primary);
+  color: #000000;
   margin: 0.1rem 0rem;
   transition: color 0.3s ease;
 }
@@ -800,9 +801,11 @@ footer {
 }
 .quick-savings-section .qs-arrow--left {
   left: 16px;
+  font-size: 1.3rem;
 }
 .quick-savings-section .qs-arrow--right {
   right: 16px;
+  font-size: 1.3rem;
 }
 .quick-savings-section .qs-track .savings-card {
   padding-left: calc(3rem + 110px);
@@ -939,7 +942,7 @@ button:hover,
   border-radius: 8px;
   font-size: 1rem;
   background: var(--color-accent);
-  box-shadow: 0 4px 6px rgba(30, 58, 95, 0.648);
+  box-shadow: 0 4px 6px #000000a4;
   border: none;
   text-align: center;
 }
@@ -1310,8 +1313,8 @@ button:hover,
     margin-top: 4rem;
   }
   .quick-savings-section #quickROI {
-    font-size: 2.4rem;
-    padding: 0.5rem 0.5rem 0 0.5rem;
+    font-size: 2rem;
+    padding: 1rem 1rem 0 1rem;
   }
   .qs-benefits {
     font-size: 1rem;
