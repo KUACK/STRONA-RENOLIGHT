@@ -1119,6 +1119,9 @@ button:hover,
   .calculator-wrapper {
     gap: 1.5rem;
   }
+  .quick-savings-section {
+    min-height: 1vh;
+  }
 }
 
 /* Telefony */
@@ -1297,7 +1300,7 @@ button:hover,
     transform: none;
     width: 100%;
     max-width: none;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
   }
 
   /* Wyłącz “dodatkowe” paddingi robione pod strzałki */
