@@ -375,12 +375,12 @@
       <h2 class="albo">ALBO</h2>
       <div class="contact-lead">
         <button type="button" class="cta-button" id="leadToggle" aria-expanded="false" aria-controls="leadPanel">
-          Podaj nam swój kontakt
+          Zostaw nam swój kontakt
         </button>
 
         <!-- PANEL, który JS rozwija -->
         <div id="leadPanel" class="lead-panel" hidden>
-          <form id="leadForm" method="post" action="/api/contact">
+          <form id="leadForm">
             <div class="lead-grid">
               <label>
                 <span class="lead-label">
@@ -445,7 +445,7 @@
 
 
   <script src="main.js" defer></script>
-
+  <script type="module" src="./leadsEasyForm.js"></script>
 </body>
 
 </html>

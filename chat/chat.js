@@ -91,14 +91,14 @@ function btn(label, dataNext, dataValue, extra = "") {
 }
 
 async function startSessionIfNeeded() {
-  const stored = localStorage.getItem(STORAGE_KEY);
+  const stored = sessionStorage.getItem(STORAGE_KEY);
   if (stored) {
     state.sessionId = stored;
     return;
   }
 
   state.sessionId = newId();
-  localStorage.setItem(STORAGE_KEY, state.sessionId);
+  sessionStorage.setItem(STORAGE_KEY, state.sessionId);
 
   const utm = getUtm();
   await dbInsert("chat_sessions", {
@@ -272,6 +272,9 @@ async function go(nodeId) {
             free_text_note:
               freeTextNote || state.answers.free_text_question || null,
           });
+
+          sessionStorage.removeItem(STORAGE_KEY);
+          state.sessionId = null;
 
           pushMsg("user", "Wysłano dane kontaktowe");
           setActions("");

@@ -429,6 +429,9 @@ document.addEventListener("DOMContentLoaded", () => {
 const toggle = document.getElementById("leadToggle");
 const panel = document.getElementById("leadPanel");
 const closeBtn = document.getElementById("leadClose");
+if (closeBtn) {
+  closeBtn.addEventListener("click", closePanel);
+}
 
 let closeTimer = null;
 
@@ -475,8 +478,6 @@ const closePanel = () => {
 toggle.addEventListener("click", () => {
   panel.hidden ? openPanel() : closePanel();
 });
-
-closeBtn.addEventListener("click", closePanel);
 
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && !panel.hidden) closePanel();
