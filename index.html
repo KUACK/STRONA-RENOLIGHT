@@ -56,21 +56,19 @@
             <ul class="qs-benefits">
               <li>Wyższa atrakcyjność oferty najmu.</li>
               <li>
-                Możliwość uzasadnienia wyższej stawki czynszu dzięki wyższemu
-                standardowi.
+                Możliwość ustalenia wyższego czynszu.
               </li>
-              <li>Mniej zgłoszeń i awarii = niższe koszty serwisu.</li>
+              <li>Mniej zgłoszeń serwisowych i niższe koszty utrzymania.</li>
               <li>Wzrost wartości i prestiżu nieruchomości.</li>
               <li class="leasing">
-                Możliwość leasingu oświetlenia i wygenerowanie dodatkowych
-                kosztów.
+                Możliwość leasingu oświetlenia i rozłożenie kosztów w czasie.
               </li>
             </ul>
           </div>
 
           <!-- ŚRODKOWY (TEN, KTÓRY MASZ TERAZ) -->
           <div class="savings-card savings-card--center" data-slide="center" id="qsCenterSlide">
-            <h2>Twoje Oszczędności</h2>
+            <h2 class="main">Twoje Oszczędności</h2>
             <div class="savings-display">
               <span class="savings-value" id="quickSavingsValue">0 PLN</span>
               <span class="savings-value-PLN"> ROCZNIE</span>
@@ -102,16 +100,16 @@
             <h2>Korzyści dla Najemcy</h2>
             <ul class="qs-benefits">
               <li>
-                Zmniejszą się twoje miesięczne koszty użytkowania, a wydatki staną bardziej przewidywalne.
+                Niższe koszty użytkowania co miesiąc.
               </li>
-              <li>Zwiększy się twoja produktywność oraz komfort pracy na codzień.</li>
+              <li>Mniej awarii i przerw w pracy.</li>
               <li>
-                Mniej stresu związanego z usterkami i przerwami w działaniu.
+                Lepszy komfort pracy (mniej zmęczenia wzroku).
               </li>
-              <li>Lepsze warunki do pracy i odpoczynku.</li>
+              <li>Przewidywalne wydatki (mniej niespodzianek).</li>
               <li class="leasing">
-                Instalacja zwróci się bardzo szybko (sprawdź kalkulator).<br />Niskie koszty
-                prądu i reszta korzyści zostaną na zawszę.
+                Instalacja zwróci się bardzo szybko.<br />Niskie koszty
+                prądu i reszta korzyści zostaną na zawsze.
               </li>
             </ul>
           </div>
@@ -119,8 +117,8 @@
 
         <button class="qs-arrow qs-arrow--right qs-cloud" type="button"
           aria-label="Jestem Najemcą. Pokaż moje korzyści">
-          Jestem Najemcą.<br />
-          Pokaż moje korzyści.
+          <span class="qs-arrow__title">Jestem Najemcą.</span>
+          <span class="qs-arrow__sub">Pokaż moje korzyści.</span>
         </button>
       </div>
     </div>
@@ -374,8 +372,45 @@
           <p>Poznań, Polska</p>
         </div>
       </div>
+      <h2 class="albo">ALBO</h2>
+      <div class="contact-lead">
+        <button type="button" class="cta-button" id="leadToggle" aria-expanded="false" aria-controls="leadPanel">
+          Podaj nam swój kontakt
+        </button>
 
-      <a href="mailto:oswietlenia@asknet.pl" class="cta-button">Wyślij Zapytanie</a>
+        <!-- PANEL, który JS rozwija -->
+        <div id="leadPanel" class="lead-panel" hidden>
+          <form id="leadForm" method="post" action="/api/contact">
+            <div class="lead-grid">
+              <label>
+                <span class="lead-label">
+                  Email <span class="req" aria-hidden="true">*</span>
+                </span>
+
+                <input name="email" type="email" required autocomplete="email"
+                  placeholder="np. jan.kowalski@firma.pl" />
+              </label>
+
+              <label>
+                Telefon
+                <input name="phone" type="tel" autocomplete="tel" placeholder="np. +48 600 000 000" />
+              </label>
+
+              <label class="lead-full">
+                Wiadomość
+                <textarea name="message" rows="4" placeholder="Krótko opisz swoją sytuację..."></textarea>
+              </label>
+            </div>
+
+            <div class="lead-actions">
+
+              <button type="submit" class="btn-primary">
+                Wyślij
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   </section>
   <section class="map-section">
@@ -407,7 +442,10 @@
       <span class="phone-tooltip">Bezpośredni kontakt? Zadzwoń do nas: +48 61 646 00 46</span>
     </a>
   </div>
+
+
   <script src="main.js" defer></script>
+
 </body>
 
 </html>

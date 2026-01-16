@@ -424,3 +424,60 @@ document.addEventListener("DOMContentLoaded", () => {
     { passive: false }
   );
 })();
+
+/*FORMULARZ NA KONCU*/
+const toggle = document.getElementById("leadToggle");
+const panel = document.getElementById("leadPanel");
+const closeBtn = document.getElementById("leadClose");
+
+let closeTimer = null;
+
+const openPanel = () => {
+  // jeśli wcześniej był zaplanowany "close" – anuluj
+  if (closeTimer) {
+    clearTimeout(closeTimer);
+    closeTimer = null;
+  }
+
+  panel.hidden = false;
+
+  // wymuś reflow (pewniejsze niż rAF przy display:none -> block)
+  panel.offsetHeight;
+
+  panel.classList.add("is-open");
+  toggle.setAttribute("aria-expanded", "true");
+  panel.querySelector('input[name="email"]')?.focus();
+};
+
+const closePanel = () => {
+  panel.classList.remove("is-open");
+  toggle.setAttribute("aria-expanded", "false");
+
+  const onEnd = (e) => {
+    if (e.target !== panel) return;
+    if (e.propertyName !== "max-height") return; // kluczowe
+    panel.hidden = true;
+    panel.removeEventListener("transitionend", onEnd);
+  };
+
+  panel.addEventListener("transitionend", onEnd);
+
+  // fallback jeśli transitionend nie odpali (np. brak realnej zmiany / reduced motion)
+  closeTimer = window.setTimeout(() => {
+    panel.hidden = true;
+    panel.removeEventListener("transitionend", onEnd);
+    closeTimer = null;
+  }, 350);
+
+  toggle.focus();
+};
+
+toggle.addEventListener("click", () => {
+  panel.hidden ? openPanel() : closePanel();
+});
+
+closeBtn.addEventListener("click", closePanel);
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && !panel.hidden) closePanel();
+});

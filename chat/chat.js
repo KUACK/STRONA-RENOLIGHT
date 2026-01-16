@@ -15,7 +15,6 @@ let state = {
   sessionId: null,
   branch: null,
   answers: {}, // role/scale/timeline/city/free_text_question
-  transcript: [], // { from: 'bot'|'user', text }
 };
 
 function $(sel) {
@@ -66,27 +65,11 @@ function newId() {
 }
 
 async function dbInsert(table, row) {
-  // Supabase insert: w v2 domyślnie nie zwraca wierszy, i to nam pasuje. [web:136][web:97]
   const { error } = await supabase.from(table).insert(row);
   if (error) throw error;
 }
 
-async function track(event_name, meta = {}) {
-  if (!state.sessionId) return;
-  try {
-    await dbInsert("chat_events", {
-      session_id: state.sessionId,
-      event_name,
-      meta,
-    });
-  } catch (e) {
-    // nie blokujemy UX jeśli tracking padnie
-  }
-}
-
 function pushMsg(from, text) {
-  state.transcript.push({ from, text });
-
   const body = $("#chatBody");
   const el = document.createElement("div");
   el.className = `chat-msg ${from === "bot" ? "bot" : "user"}`;
@@ -125,23 +108,20 @@ async function startSessionIfNeeded() {
     user_agent: navigator.userAgent || null,
     ...utm,
   });
-
-  await track("session_started", { landing_url: window.location.href });
 }
 
 async function go(nodeId) {
   const f = await loadFlow();
   const node = f.nodes[nodeId];
+
   if (!node) {
     pushMsg("bot", "Wystąpił błąd konfiguracji czatu.");
     setActions(`<div class="chat-error">Brak nodeId: ${nodeId}</div>`);
-    await track("error_missing_node", { nodeId });
     return;
   }
 
   if (node.type === "message") {
     pushMsg("bot", node.text);
-    await track("bot_message", { nodeId });
     if (node.next) return go(node.next);
     setActions(btn("Zamknij", "", "", 'id="chatEndBtn"'));
     $("#chatEndBtn").addEventListener("click", closeChat);
@@ -150,12 +130,7 @@ async function go(nodeId) {
 
   if (node.type === "choices") {
     pushMsg("bot", node.text);
-    await track("bot_choices", { nodeId });
-
-    const html = node.options
-      .map((o) => btn(o.label, o.next, o.value))
-      .join("");
-    setActions(html);
+    setActions(node.options.map((o) => btn(o.label, o.next, o.value)).join(""));
 
     Array.from($("#chatActions").querySelectorAll("button")).forEach((b) => {
       b.addEventListener("click", async () => {
@@ -164,33 +139,9 @@ async function go(nodeId) {
         const label = b.textContent || "";
 
         pushMsg("user", label);
-        await track("choice_selected", { nodeId, value: val, label });
 
-        if (nodeId === "START") {
-          state.branch = val;
-          try {
-            await dbInsert("chat_answers", {
-              session_id: state.sessionId,
-              step_id: "BRANCH",
-              question: node.text,
-              answer: label,
-              answer_value: val,
-            });
-          } catch (e) {}
-        }
-
-        if (node.questionKey) {
-          state.answers[node.questionKey] = val;
-          try {
-            await dbInsert("chat_answers", {
-              session_id: state.sessionId,
-              step_id: nodeId,
-              question: node.text,
-              answer: label,
-              answer_value: val,
-            });
-          } catch (e) {}
-        }
+        if (nodeId === "START") state.branch = val;
+        if (node.questionKey) state.answers[node.questionKey] = val;
 
         setActions("");
         if (next) await go(next);
@@ -201,11 +152,11 @@ async function go(nodeId) {
 
   if (node.type === "input") {
     pushMsg("bot", node.text);
-    await track("bot_input", { nodeId });
 
     const skipBtn = node.allowSkip
       ? btn(node.skipLabel || "Pomiń", node.next, "unknown")
       : "";
+
     setActions(`
       <div class="chat-input-row">
         <input id="chatTextInput" type="text" placeholder="${
@@ -220,8 +171,7 @@ async function go(nodeId) {
     const input = $("#chatTextInput");
     const err = $("#chatInputError");
 
-    const buttons = Array.from($("#chatActions").querySelectorAll("button"));
-    buttons.forEach((b) =>
+    Array.from($("#chatActions").querySelectorAll("button")).forEach((b) =>
       b.addEventListener("click", async () => {
         const next = b.getAttribute("data-next");
         const valRaw = decodeURIComponent(b.getAttribute("data-value") || "");
@@ -240,23 +190,10 @@ async function go(nodeId) {
         const shown =
           valRaw === "unknown" ? node.skipLabel || "Nie wiem / nie chcę…" : val;
         pushMsg("user", shown);
-        await track("text_submitted", {
-          nodeId,
-          value: valRaw === "unknown" ? "unknown" : val,
-        });
 
         if (node.questionKey) {
           state.answers[node.questionKey] =
             valRaw === "unknown" ? "unknown" : val;
-          try {
-            await dbInsert("chat_answers", {
-              session_id: state.sessionId,
-              step_id: nodeId,
-              question: node.text,
-              answer: shown,
-              answer_value: valRaw === "unknown" ? "unknown" : val,
-            });
-          } catch (e) {}
         }
 
         setActions("");
@@ -268,7 +205,6 @@ async function go(nodeId) {
 
   if (node.type === "lead_form") {
     pushMsg("bot", node.text);
-    await track("bot_lead_form", { nodeId });
 
     setActions(`
       <div class="chat-input-row">
@@ -282,11 +218,10 @@ async function go(nodeId) {
         </label>
 
         <div class="chat-note">
-          Administratorem danych jest ${
-            node.privacyAdmin || "…"
-          }. Szczegóły: <a href="${
-      node.privacyLink || "#"
-    }">Polityka prywatności</a>.
+          Administratorem danych jest ${node.privacyAdmin || "…"}.
+          Szczegóły: <a href="${
+            node.privacyLink || "#"
+          }">Polityka prywatności</a>.
         </div>
 
         ${btn("Wyślij", node.next, "__submit__")}
@@ -311,24 +246,20 @@ async function go(nodeId) {
         if (!email) {
           err.style.display = "block";
           err.textContent = "Email jest wymagany.";
-          await track("lead_submit_error", { reason: "missing_email" });
           return;
         }
         if (!consent) {
           err.style.display = "block";
           err.textContent = "Zaznacz zgodę na kontakt w sprawie wyceny.";
-          await track("lead_submit_error", { reason: "missing_consent" });
           return;
         }
 
         err.style.display = "none";
         setActions(`<div class="chat-note">Wysyłanie…</div>`);
 
-        const leadId = newId();
-
         try {
           await dbInsert("leads", {
-            id: leadId,
+            id: newId(),
             session_id: state.sessionId,
             email,
             phone: phone || null,
@@ -342,17 +273,12 @@ async function go(nodeId) {
               freeTextNote || state.answers.free_text_question || null,
           });
 
-          await track("lead_submitted", { leadId });
           pushMsg("user", "Wysłano dane kontaktowe");
           setActions("");
           await go(node.next);
         } catch (e) {
           setActions("");
           pushMsg("bot", "Nie udało się wysłać. Spróbuj ponownie za chwilę.");
-          await track("lead_submit_error", {
-            reason: "db_error",
-            message: String(e?.message || e),
-          });
         }
       });
 
@@ -362,15 +288,12 @@ async function go(nodeId) {
 
 function openChat() {
   ensurePanel();
-  const panel = $("#chatPanel");
-  panel.classList.add("is-open");
-  track("chat_open");
+  $("#chatPanel").classList.add("is-open");
 }
 
 function closeChat() {
   const panel = $("#chatPanel");
   if (panel) panel.classList.remove("is-open");
-  track("chat_close");
 }
 
 async function startChat() {
@@ -381,7 +304,7 @@ async function startChat() {
   $("#chatBody").innerHTML = "";
   $("#chatActions").innerHTML = "";
   state.answers = {};
-  state.transcript = [];
+  state.branch = null;
 
   openChat();
   await go(flow.startNodeId);
